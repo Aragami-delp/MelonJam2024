@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class BaseBullet : LaneObject
+public class Bullet : LaneObject
 {
     [SerializeField] public int m_damage = 1;
 
-    public BaseBullet Init(float startingAdvancement)
+    public Bullet Init(float startingAdvancement)
     {
         m_advancement = startingAdvancement;
         return this;

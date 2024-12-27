@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseEnemy : LaneObject
+public class Enemy : LaneObject
 {
     [SerializeField] public int m_health = 2;
 

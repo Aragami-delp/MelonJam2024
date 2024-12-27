@@ -10,12 +10,12 @@ public class Lane : MonoBehaviour
     [SerializeField] private Transform _startPoint;
     [SerializeField] private Transform _endPoint;
 
-    private List<BaseEnemy> _activeEnemyList = new();
-    private List<BaseBullet> _activeBulletList = new();
+    private List<Enemy> _activeEnemyList = new();
+    private List<Bullet> _activeBulletList = new();
     [SerializeField, InspectorName("Tiles Distance")] private float _distance = 5f;
 
-    [SerializeField] private List<BaseEnemy> _enemyPrefabList;
-    [SerializeField] private BaseBullet _testBulletPrefab;
+    [SerializeField] private List<Enemy> _enemyPrefabList;
+    [SerializeField] private Bullet _testBulletPrefab;
 
     private void Start()
     {
@@ -42,16 +42,16 @@ public class Lane : MonoBehaviour
         }
     }
 
-    public void Shoot(BaseBullet bulletPrefab)
+    public void Shoot(Bullet bulletPrefab)
     {
-        BaseBullet newBullet = Instantiate(bulletPrefab).Init(_distance);
+        Bullet newBullet = Instantiate(bulletPrefab).Init(_distance);
         newBullet.transform.position = _endPoint.position;
         _activeBulletList.Add(newBullet);
     }
 
-    public void SpawnEnemy(BaseEnemy enemyPrefab)
+    public void SpawnEnemy(Enemy enemyPrefab)
     {
-        BaseEnemy newEnemy = Instantiate(enemyPrefab);
+        Enemy newEnemy = Instantiate(enemyPrefab);
         newEnemy.transform.position = _startPoint.position;
         _activeEnemyList.Add(newEnemy);
     }
@@ -64,19 +64,19 @@ public class Lane : MonoBehaviour
         // Check for bullets out of bounds on lane without enemies
     }
 
-    private void MoveEnemy(BaseEnemy enemy)
+    private void MoveEnemy(Enemy enemy)
     {
         enemy.Advance();
         enemy.UpdatePosition(Vector2.Lerp(_startPoint.position, _endPoint.position, enemy.m_advancement/_distance));
     }
 
-    private void MoveBullet(BaseBullet bullet)
+    private void MoveBullet(Bullet bullet)
     {
         bullet.Advance();
         bullet.UpdatePosition(Vector2.Lerp(_startPoint.position, _endPoint.position, bullet.m_advancement/_distance));
     }
 
-    private void BulletHitEnemy(BaseBullet bullet, BaseEnemy enemy)
+    private void BulletHitEnemy(Bullet bullet, Enemy enemy)
     {
         _activeBulletList.Remove(bullet);
         Destroy(bullet.gameObject);
@@ -92,8 +92,8 @@ public class Lane : MonoBehaviour
     {
         do
         {
-            BaseEnemy furthestEnemy = GetFurthestLaneObject(_activeEnemyList);
-            BaseBullet furthestBullet = GetClosestLaneObject(_activeBulletList);
+            Enemy furthestEnemy = GetFurthestLaneObject(_activeEnemyList);
+            Bullet furthestBullet = GetClosestLaneObject(_activeBulletList);
             if (furthestEnemy is not null && furthestBullet is not null &&
                 furthestEnemy.m_advancement > furthestBullet.m_advancement)
             {

@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 125401099}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 1, z: 0}
+  m_LocalPosition: {x: 8.895, y: -3.448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -511,12 +511,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3123375938375017786, guid: a58ec4bdcf84abd449f9b534e2c52994, type: 3}
+  m_Sprite: {fileID: -7443756053782179069, guid: 951fbd7e73684c84095f316eac69f419, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.4, y: 3.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -532,7 +532,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.78, y: 2.78, z: 2.78}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -587,7 +587,7 @@ MonoBehaviour:
   _endPoint: {fileID: 1560813561}
   _distance: 8
   _enemyPrefabList:
-  - {fileID: 887397223000437661, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+  - {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
   _testBulletPrefab: {fileID: 4352268472978468666, guid: e171874c545cfe64592084c42d8fb844, type: 3}
 --- !u!1 &1560813560
 GameObject:
@@ -614,7 +614,7 @@ Transform:
   m_GameObject: {fileID: 1560813560}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 1, z: 0}
+  m_LocalPosition: {x: -7.116, y: -3.448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
