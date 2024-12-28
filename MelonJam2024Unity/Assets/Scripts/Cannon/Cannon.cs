@@ -9,6 +9,7 @@ public class MoveCannon : MonoBehaviour
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private Transform _scrapPickupY;
     [SerializeField] private Transform _cannon;
+    [SerializeField] private Transform _scrapHoldPos;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField] private UnityEvent<bool> _switchPolarity;
     private List<float> _lanePositions = new();
@@ -36,8 +37,8 @@ public class MoveCannon : MonoBehaviour
     {
         // int Mathf.Clamp(value, min, max) is inclusive ... for some reason
         if (_currentLane == lane) { return; }
-        _currentLane = Mathf.Clamp(lane, -1, EnemySpawner.Instance.m_lanes.Count - 1);
 
+        _currentLane = Mathf.Clamp(lane, -1, EnemySpawner.Instance.m_lanes.Count - 1);
         _currentTarget = new Vector2(_cannon.transform.position.x, _currentLane == -1 ? _scrapPickupY.position.y : GetCurrentLane.m_endPoint.transform.position.y);
 
         _isMoving = true;
@@ -141,6 +142,7 @@ public class MoveCannon : MonoBehaviour
         if (_isMoving)
         {
             _cannon.transform.position = Vector3.MoveTowards(_cannon.transform.position, _currentTarget, _moveSpeed * Time.deltaTime);
+            _holdingScrap.ForEach(x => x.UpdatePositionCannon(_scrapHoldPos.position));
             if (_cannon.transform.position == _currentTarget)
             {
                 _isMoving = false;

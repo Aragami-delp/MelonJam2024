@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 [DefaultExecutionOrder(-50)]
 public class EnemySpawner : MonoBehaviour
@@ -18,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     [SerializeField, Tooltip("From top to bottom auto sorted")] public List<Lane> m_lanes = new();
     [SerializeField] private List<Enemy> _enemyPrefabList = new();
+
+    [SerializeField] private UnityEvent _looseCondition; //TODO
 
     private void Awake()
     {

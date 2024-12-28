@@ -6,5 +6,5 @@ public abstract class LaneObject : MonoBehaviour
     [HideInInspector] public float m_advancement = 0f;
 
     public abstract void Advance();
-    public abstract void UpdatePosition(Vector2 newPos);
+    public abstract void UpdatePositionAdvancement(Vector2 newPos);
 }

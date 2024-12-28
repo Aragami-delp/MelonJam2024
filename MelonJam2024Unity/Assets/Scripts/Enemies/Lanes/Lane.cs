@@ -47,13 +47,13 @@ public class Lane : MonoBehaviour
     private void MoveEnemy(Enemy enemy)
     {
         enemy.Advance();
-        enemy.UpdatePosition(Vector2.Lerp(m_startPoint.position, m_endPoint.position, enemy.m_advancement/_distance));
+        enemy.UpdatePositionAdvancement(Vector2.Lerp(m_startPoint.position, m_endPoint.position, enemy.m_advancement/_distance));
     }
 
     private void MoveBullet(Bullet bullet)
     {
         bullet.Advance();
-        bullet.UpdatePosition(Vector2.Lerp(m_startPoint.position, m_endPoint.position, bullet.m_advancement/_distance));
+        bullet.UpdatePositionAdvancement(Vector2.Lerp(m_startPoint.position, m_endPoint.position, bullet.m_advancement/_distance));
     }
 
     private void BulletHitEnemy(Bullet bullet, Enemy enemy)

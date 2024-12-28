@@ -9,7 +9,7 @@ public class Enemy : LaneObject
         m_advancement += m_tilesSpeed * Time.deltaTime;
     }
 
-    public override void UpdatePosition(Vector2 newPos)
+    public override void UpdatePositionAdvancement(Vector2 newPos)
     {
         this.transform.position = newPos;
     }
