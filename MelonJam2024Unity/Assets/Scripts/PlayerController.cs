@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if (harvestCooldown <= cooldownPassed && interacting) 
         {
             cooldownPassed = 0; 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, DirectionToDir(), 5f, layer);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, DirectionToDir(), 1f, layer);
             
 
             if (hit.collider) 
@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
 
         if (callback.started) 
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, DirectionToDir());
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, DirectionToDir(), 1f);
             
             if (hit.collider.gameObject.TryGetComponent(out InteractableButton button))
             {
