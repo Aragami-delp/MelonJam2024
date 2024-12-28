@@ -154,10 +154,13 @@ public class PlayerController : MonoBehaviour
         if (callback.started) 
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, DirectionToDir(), 1f);
-            
-            if (hit.collider.gameObject.TryGetComponent(out InteractableButton button))
+
+            if (hit.collider)
             {
-                button.InvokeButton();
+                if (hit.collider.gameObject.TryGetComponent(out InteractableButton button))
+                {
+                    button.InvokeButton();
+                }
             }
 
         }

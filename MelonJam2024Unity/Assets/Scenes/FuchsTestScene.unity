@@ -127,18 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 341922042}
     m_Modifications:
-    - target: {fileID: 3224089669344115393, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
-      propertyPath: MaxHP
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224089669344115393, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
-      propertyPath: scrapCapacity
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224089669344115393, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
-      propertyPath: lootPool.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.5
@@ -227,6 +215,10 @@ Transform:
   m_Children:
   - {fileID: 1353849901}
   - {fileID: 998193083}
+  - {fileID: 1898345408}
+  - {fileID: 1495504107}
+  - {fileID: 402185215}
+  - {fileID: 1293397198}
   m_Father: {fileID: 341922042}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &156926220
@@ -314,6 +306,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d765b6cccd2948a46b24c15040b68254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tables:
+  - {fileID: 1898345408}
+  - {fileID: 1495504107}
+  - {fileID: 402185215}
+  - {fileID: 1293397198}
+  maxCapacity: 4
 --- !u!4 &197144493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7535174911865175060, guid: 89fde4fbdbe8a454a962710642c45703, type: 3}
@@ -683,6 +681,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &402185214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 402185215}
+  m_Layer: 10
+  m_Name: ScrapSpot (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402185215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402185214}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.952, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 156926219}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &482166226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1160,6 +1189,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7167213032777629497, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
   m_PrefabInstance: {fileID: 4918121068854019019}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1293397197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1293397198}
+  m_Layer: 10
+  m_Name: ScrapSpot (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1293397198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293397197}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.986, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 156926219}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1325180516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,6 +1548,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1495504106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1495504107}
+  m_Layer: 10
+  m_Name: ScrapSpot (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1495504107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495504106}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.148, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 156926219}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1739690739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1545,6 +1636,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89fde4fbdbe8a454a962710642c45703, type: 3}
+--- !u!1 &1898345407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1898345408}
+  m_Layer: 10
+  m_Name: ScrapSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1898345408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1898345407}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.077, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 156926219}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1907737985
 PrefabInstance:
   m_ObjectHideFlags: 0

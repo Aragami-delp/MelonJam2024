@@ -4,6 +4,9 @@ using System.Collections.Generic;
 public class ScrapTable : MonoBehaviour
 {
     [SerializeField]
+    Transform[] tables; 
+
+    [SerializeField]
     int maxCapacity = 4;
     
     List<Transform> scrap = new List<Transform>(); 
