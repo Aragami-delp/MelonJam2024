@@ -62,10 +62,6 @@ public class PlayerController : MonoBehaviour
                 {
                     scrapPile.DealDmg(harvestDamage);
                 }
-                else if(hit.collider.gameObject.TryGetComponent(out InteractableButton button))
-                {
-                    button.InvokeButton();
-                }
             }
         }
 
