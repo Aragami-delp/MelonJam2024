@@ -9,6 +9,7 @@ public class Lane : MonoBehaviour
 {
     [SerializeField] public Transform m_startPoint;
     [SerializeField] public Transform m_endPoint;
+    [SerializeField] private SpriteRenderer _activeIndicator;
 
     private List<Enemy> _activeEnemyList = new();
     private List<Bullet> _activeBulletList = new();
@@ -17,6 +18,11 @@ public class Lane : MonoBehaviour
     private void Start()
     {
         //_distance = Vector2.Distance(_startPoint.position, _endPoint.position);
+    }
+
+    public void SetLaneIndicator(Sprite newSprite)
+    {
+        _activeIndicator.sprite = newSprite;
     }
 
     public void Shoot(List<Bullet> bullets)
@@ -51,7 +57,7 @@ public class Lane : MonoBehaviour
         if (enemy.m_advancement >= _distance)
         {
             Debug.LogWarning("Loose Condition");
-            EnemySpawner.Instance.m_looseCondition.Invoke();
+            LaneSystem.Instance.m_looseCondition.Invoke();
         }
     }
 

@@ -39,10 +39,12 @@ public class MoveCannon : MonoBehaviour
         // int Mathf.Clamp(value, min, max) is inclusive ... for some reason
         if (_currentLane == lane) { return; }
 
-        _currentLane = Mathf.Clamp(lane, -1, EnemySpawner.Instance.m_lanes.Count - 1);
+        _currentLane = Mathf.Clamp(lane, -1, LaneSystem.Instance.m_lanes.Count - 1);
         _currentTarget = new Vector2(_cannon.transform.position.x, _currentLane == -1 ? _scrapPickupY.position.y : GetCurrentLane.m_endPoint.transform.position.y);
 
         _isMoving = true;
+
+        LaneSystem.Instance.UpdateLaneIndicator(_currentLane);
     }
 
     // Top to bottom. Highest lane is 0
@@ -58,7 +60,7 @@ public class MoveCannon : MonoBehaviour
         MoveToLane(_currentLane - 1);
     }
 
-    private Lane GetCurrentLane => _currentLane != -1 ? EnemySpawner.Instance.m_lanes[_currentLane] : null;
+    private Lane GetCurrentLane => _currentLane != -1 ? LaneSystem.Instance.m_lanes[_currentLane] : null;
 
     public void SwitchPolarity()
     {
