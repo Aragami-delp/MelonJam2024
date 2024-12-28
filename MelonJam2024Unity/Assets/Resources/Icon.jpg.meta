@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 951fbd7e73684c84095f316eac69f419
+guid: 4062c04ec943eb54fbbd2e3d030c2abe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7443756053782179069
-    second: background_0
+      213: -7232521027535748977
+    second: Cat_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,6 +97,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -113,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: background_0
+      name: Cat_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 640
-        height: 360
+        width: 1126
+        height: 2000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 30356abce4772b890800000000000000
-      internalID: -7443756053782179069
+      spriteID: f80403be17ce0ab90800000000000000
+      internalID: -7232521027535748977
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      background_0: -7443756053782179069
+      Cat_0: -7232521027535748977
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
