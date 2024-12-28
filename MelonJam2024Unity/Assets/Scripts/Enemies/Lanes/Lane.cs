@@ -20,9 +20,9 @@ public class Lane : MonoBehaviour
         //_distance = Vector2.Distance(_startPoint.position, _endPoint.position);
     }
 
-    public void SetLaneIndicator(Sprite newSprite)
+    public void SetLaneIndicator(bool active)
     {
-        _activeIndicator.sprite = newSprite;
+        _activeIndicator.enabled = active;
     }
 
     public void Shoot(List<Bullet> bullets)

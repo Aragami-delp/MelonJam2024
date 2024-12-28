@@ -14,7 +14,6 @@ public class LaneSystem : MonoBehaviour
     private float _currentSpawnDelay = 0.75f;
     private float _timeSinceLastSpawn = 0f;
 
-    [SerializeField] public Sprite m_offLaneSprite;
     [SerializeField] public Sprite m_onLaneSprite;
 
     /// <summary>
@@ -69,7 +68,7 @@ public class LaneSystem : MonoBehaviour
         {
             m_lanes[newlyActiveLane].SetLaneIndicator(m_onLaneSprite);
         }
-        m_lanes.Where((lane, index) => index != newlyActiveLane).ToList().ForEach(x => x.SetLaneIndicator(m_offLaneSprite));
+        m_lanes.Where((lane, index) => index != newlyActiveLane).ToList().ForEach(x => x.SetLaneIndicator(false));
     }
 
     [ContextMenu("SpawnEnemy")]

@@ -127,18 +127,18 @@ public class MoveCannon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            MoveLaneDown();
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            MoveLaneUp();
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SwitchPolarity();
-        }
+        //if (Input.GetKeyDown(KeyCode.DownArrow))
+        //{
+        //    MoveLaneDown();
+        //}
+        //else if (Input.GetKeyDown(KeyCode.UpArrow))
+        //{
+        //    MoveLaneUp();
+        //}
+        //else if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    SwitchPolarity();
+        //}
 
         if (_isMoving)
         {
