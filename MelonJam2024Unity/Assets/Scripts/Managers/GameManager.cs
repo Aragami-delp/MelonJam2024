@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    public int Coins;
     
     private void Awake()
     {
@@ -13,5 +15,16 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(this);
+    }
+
+    public static bool TryPay(int cost) 
+    {
+        if (Instance.Coins >= cost) 
+        {
+            Instance.Coins -= cost;
+            return true; 
+        }
+
+        return false; 
     }
 }
