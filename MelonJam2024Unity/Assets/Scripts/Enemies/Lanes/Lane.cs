@@ -9,6 +9,7 @@ public class Lane : MonoBehaviour
 {
     [SerializeField] public Transform m_startPoint;
     [SerializeField] public Transform m_endPoint;
+    [SerializeField] private SpriteRenderer _activeIndicator;
 
     private List<Enemy> _activeEnemyList = new();
     private List<Bullet> _activeBulletList = new();
@@ -17,6 +18,11 @@ public class Lane : MonoBehaviour
     private void Start()
     {
         //_distance = Vector2.Distance(_startPoint.position, _endPoint.position);
+    }
+
+    public void SetLaneIndicator(bool active)
+    {
+        _activeIndicator.enabled = active;
     }
 
     public void Shoot(List<Bullet> bullets)
@@ -48,6 +54,11 @@ public class Lane : MonoBehaviour
     {
         enemy.Advance();
         enemy.UpdatePositionAdvancement(Vector2.Lerp(m_startPoint.position, m_endPoint.position, enemy.m_advancement/_distance));
+        if (enemy.m_advancement >= _distance)
+        {
+            Debug.LogWarning("Loose Condition");
+            LaneSystem.Instance.m_onLooseCondition.Invoke();
+        }
     }
 
     private void MoveBullet(Bullet bullet)
@@ -64,6 +75,7 @@ public class Lane : MonoBehaviour
         if (enemy.m_health <= 0)
         {
             _activeEnemyList.Remove(enemy);
+            LaneSystem.Instance.m_onEnemyDied.Invoke(enemy.m_lootValue);
             Destroy(enemy.gameObject); // TODO: Pooling
         }
     }

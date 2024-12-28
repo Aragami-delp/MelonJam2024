@@ -5,14 +5,16 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [DefaultExecutionOrder(-50)]
-public class EnemySpawner : MonoBehaviour
+public class LaneSystem : MonoBehaviour
 {
-    public static EnemySpawner Instance { get; private set; }
+    public static LaneSystem Instance { get; private set; }
 
     [SerializeField] private float _minSpawnDelay = 0.5f;
     [SerializeField] private float _maxSpawnDelay = 1.0f;
     private float _currentSpawnDelay = 0.75f;
     private float _timeSinceLastSpawn = 0f;
+
+    [SerializeField] public Sprite m_onLaneSprite;
 
     /// <summary>
     /// Lanes from top to bottom
@@ -20,7 +22,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField, Tooltip("From top to bottom auto sorted")] public List<Lane> m_lanes = new();
     [SerializeField] private List<Enemy> _enemyPrefabList = new();
 
-    [SerializeField] private UnityEvent _looseCondition; //TODO
+    [SerializeField] public UnityEvent m_onLooseCondition;
+    [SerializeField] public UnityEvent<int> m_onEnemyDied;
 
     private void Awake()
     {
@@ -41,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         if (m_lanes is null || m_lanes.Count == 0) m_lanes = GetComponentsInChildren<Lane>().ToList();
-        m_lanes.OrderByDescending(y => y.m_endPoint.position.y).ToList();
+        m_lanes = m_lanes.OrderByDescending(y => y.m_endPoint.position.y).ToList();
 
         _currentSpawnDelay = UnityEngine.Random.Range(_minSpawnDelay, _maxSpawnDelay);
     }
@@ -57,6 +60,15 @@ public class EnemySpawner : MonoBehaviour
 
             SpawnEnemy();
         }
+    }
+
+    public void UpdateLaneIndicator(int newlyActiveLane)
+    {
+        if (newlyActiveLane != -1)
+        {
+            m_lanes[newlyActiveLane].SetLaneIndicator(m_onLaneSprite);
+        }
+        m_lanes.Where((lane, index) => index != newlyActiveLane).ToList().ForEach(x => x.SetLaneIndicator(false));
     }
 
     [ContextMenu("SpawnEnemy")]

@@ -31,9 +31,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 _targetPosition;
     private Direction _direction;
     private static readonly int AnimDirection = Animator.StringToHash("Direction");
+    private int layer;
 
     private void Awake()
     {
+        layer = LayerMask.GetMask("Interactable");
         Player = this;
     }
 
@@ -51,7 +53,7 @@ public class PlayerController : MonoBehaviour
         if (harvestCooldown <= cooldownPassed && interacting) 
         {
             cooldownPassed = 0; 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, DirectionToDir());
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, DirectionToDir(), 5f, layer);
             
 
             if (hit.collider) 
