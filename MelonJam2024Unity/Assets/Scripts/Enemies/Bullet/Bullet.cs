@@ -3,8 +3,10 @@ using UnityEngine;
 public class Bullet : LaneObject
 {
     [SerializeField] public int m_damage = 1;
+    [SerializeField] private float maxFlyHight = 1f;
+    [SerializeField] private AnimationCurve _flyCurve;
 
-    public Bullet Init(float startingAdvancement)
+    public Bullet InitShoot(float startingAdvancement)
     {
         m_advancement = startingAdvancement;
         return this;

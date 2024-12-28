@@ -3,32 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[DefaultExecutionOrder(-50)]
 public class EnemySpawner : MonoBehaviour
 {
-    //public static EnemySpawner Instance { get; private set; }
+    public static EnemySpawner Instance { get; private set; }
 
     [SerializeField] private float _minSpawnDelay = 0.5f;
     [SerializeField] private float _maxSpawnDelay = 1.0f;
     private float _currentSpawnDelay = 0.75f;
     private float _timeSinceLastSpawn = 0f;
 
-    [SerializeField] private List<Lane> _lanes = new();
+    /// <summary>
+    /// Lanes from top to bottom
+    /// </summary>
+    [SerializeField, Tooltip("From top to bottom auto sorted")] public List<Lane> m_lanes = new();
     [SerializeField] private List<Enemy> _enemyPrefabList = new();
 
     private void Awake()
     {
-        //if (Instance != null)
-        //{
-        //    Destroy(this.gameObject);
-        //    return;
-        //}
-        //Instance = this;
+        if (Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
         //DontDestroyOnLoad(this);
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
     }
 
     private void Start()
     {
-        if (_lanes is null || _lanes.Count == 0) _lanes = GetComponentsInChildren<Lane>().ToList();
+        if (m_lanes is null || m_lanes.Count == 0) m_lanes = GetComponentsInChildren<Lane>().ToList();
+        m_lanes.OrderByDescending(y => y.m_endPoint.position.y).ToList();
+
         _currentSpawnDelay = UnityEngine.Random.Range(_minSpawnDelay, _maxSpawnDelay);
     }
 
@@ -58,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnEnemy(Enemy enemyPrefab = null, Lane lane = null)
     {
         enemyPrefab ??= _enemyPrefabList[UnityEngine.Random.Range(0, _enemyPrefabList.Count)];
-        lane ??= _lanes[UnityEngine.Random.Range(0, _lanes.Count)];
+        lane ??= m_lanes[UnityEngine.Random.Range(0, m_lanes.Count)];
 
         lane.SpawnEnemy(enemyPrefab);
     }
