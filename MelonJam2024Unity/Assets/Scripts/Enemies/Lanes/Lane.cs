@@ -14,7 +14,6 @@ public class Lane : MonoBehaviour
     private List<Bullet> _activeBulletList = new();
     [SerializeField, InspectorName("Tiles Distance")] private float _distance = 5f;
 
-    [SerializeField] private List<Enemy> _enemyPrefabList;
     [SerializeField] private Bullet _testBulletPrefab;
 
     private void Start()
@@ -23,22 +22,12 @@ public class Lane : MonoBehaviour
     }
 
     [ContextMenu("Shoot Test")]
-    [Obsolete("Only for the inspector")]
+    [Obsolete("Only for the inspector/testing")]
     public void SpawnOneTestBullet()
     {
         if (Application.isPlaying)
         {
             Shoot(_testBulletPrefab);
-        }
-    }
-
-    [ContextMenu("SpawnEnemy")]
-    [Obsolete("Only for the inspector")]
-    public void SpawnOneRandomEnemy()
-    {
-        if (Application.isPlaying)
-        {
-            SpawnEnemy(_enemyPrefabList[UnityEngine.Random.Range(0, _enemyPrefabList.Count)]);
         }
     }
 
@@ -58,6 +47,13 @@ public class Lane : MonoBehaviour
 
     private void Update()
     {
+        #region Debug
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnOneTestBullet();
+        }
+        #endregion
+
         _activeEnemyList.ForEach(enemy => MoveEnemy(enemy));
         _activeBulletList.ForEach(bullet => MoveBullet(bullet));
         BulletCollisionCheck();
@@ -94,11 +90,19 @@ public class Lane : MonoBehaviour
         {
             Enemy furthestEnemy = GetFurthestLaneObject(_activeEnemyList);
             Bullet furthestBullet = GetClosestLaneObject(_activeBulletList);
-            if (furthestEnemy is not null && furthestBullet is not null &&
-                furthestEnemy.m_advancement > furthestBullet.m_advancement)
+            if (furthestBullet != null)
             {
-                BulletHitEnemy(furthestBullet, furthestEnemy);
-                continue;
+                if (furthestEnemy != null && furthestEnemy.m_advancement > furthestBullet.m_advancement)
+                {
+                    BulletHitEnemy(furthestBullet, furthestEnemy);
+                    continue;
+                }
+                else if (furthestBullet.m_advancement <= 0) // Bullet reaching right screen side
+                {
+                    _activeBulletList.Remove(furthestBullet);
+                    Destroy(furthestBullet.gameObject);
+                    continue;
+                }
             }
             return;
         }
