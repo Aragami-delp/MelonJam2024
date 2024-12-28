@@ -75,6 +75,7 @@ public class Lane : MonoBehaviour
         if (enemy.m_health <= 0)
         {
             _activeEnemyList.Remove(enemy);
+            LaneSystem.Instance.m_enemyDied.Invoke(enemy.m_lootValue);
             Destroy(enemy.gameObject); // TODO: Pooling
         }
     }

@@ -139,10 +139,6 @@ public class MoveCannon : MonoBehaviour
         {
             SwitchPolarity();
         }
-        else if (Input.GetKeyDown(KeyCode.Return))
-        {
-            SpawnOneTestBullet();
-        }
 
         if (_isMoving)
         {
