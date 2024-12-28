@@ -149,7 +149,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteractPressed(InputAction.CallbackContext callback)
     {
-        interacting = !callback.canceled; 
+        interacting = !callback.canceled;
+
+        if (callback.started) 
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, DirectionToDir());
+            
+            if (hit.collider.gameObject.TryGetComponent(out InteractableButton button))
+            {
+                button.InvokeButton();
+            }
+
+        }
     }
 
     public bool CanTakeMoreLoot() 
