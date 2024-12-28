@@ -116,6 +116,10 @@ public class PlayerController : MonoBehaviour
             _targetPosition += direction;
             _animator.SetInteger(AnimDirection, (int) _direction); 
         }
+        else
+        {
+            _animator.SetInteger(AnimDirection, (int) _direction + 10); 
+        }
     }
 
     private Vector2 DirectionToDir() 
