@@ -7,53 +7,37 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class Lane : MonoBehaviour
 {
-    [SerializeField] private Transform _startPoint;
-    [SerializeField] private Transform _endPoint;
+    [SerializeField] public Transform m_startPoint;
+    [SerializeField] public Transform m_endPoint;
 
     private List<Enemy> _activeEnemyList = new();
     private List<Bullet> _activeBulletList = new();
     [SerializeField, InspectorName("Tiles Distance")] private float _distance = 5f;
-
-    [SerializeField] private Bullet _testBulletPrefab;
 
     private void Start()
     {
         //_distance = Vector2.Distance(_startPoint.position, _endPoint.position);
     }
 
-    [ContextMenu("Shoot Test")]
-    [Obsolete("Only for the inspector/testing")]
-    public void SpawnOneTestBullet()
+    public void Shoot(List<Bullet> bullets)
     {
-        if (Application.isPlaying)
+        foreach (Bullet bullet in bullets)
         {
-            Shoot(_testBulletPrefab);
+            bullet.InitShoot(_distance);
+            bullet.transform.position = m_endPoint.position;
+            _activeBulletList.Add(bullet);
         }
-    }
-
-    public void Shoot(Bullet bulletPrefab)
-    {
-        Bullet newBullet = Instantiate(bulletPrefab).Init(_distance);
-        newBullet.transform.position = _endPoint.position;
-        _activeBulletList.Add(newBullet);
     }
 
     public void SpawnEnemy(Enemy enemyPrefab)
     {
         Enemy newEnemy = Instantiate(enemyPrefab);
-        newEnemy.transform.position = _startPoint.position;
+        newEnemy.transform.position = m_startPoint.position;
         _activeEnemyList.Add(newEnemy);
     }
 
     private void Update()
     {
-        #region Debug
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnOneTestBullet();
-        }
-        #endregion
-
         _activeEnemyList.ForEach(enemy => MoveEnemy(enemy));
         _activeBulletList.ForEach(bullet => MoveBullet(bullet));
         BulletCollisionCheck();
@@ -63,13 +47,13 @@ public class Lane : MonoBehaviour
     private void MoveEnemy(Enemy enemy)
     {
         enemy.Advance();
-        enemy.UpdatePosition(Vector2.Lerp(_startPoint.position, _endPoint.position, enemy.m_advancement/_distance));
+        enemy.UpdatePositionAdvancement(Vector2.Lerp(m_startPoint.position, m_endPoint.position, enemy.m_advancement/_distance));
     }
 
     private void MoveBullet(Bullet bullet)
     {
         bullet.Advance();
-        bullet.UpdatePosition(Vector2.Lerp(_startPoint.position, _endPoint.position, bullet.m_advancement/_distance));
+        bullet.UpdatePositionAdvancement(Vector2.Lerp(m_startPoint.position, m_endPoint.position, bullet.m_advancement/_distance));
     }
 
     private void BulletHitEnemy(Bullet bullet, Enemy enemy)
@@ -136,10 +120,10 @@ public class Lane : MonoBehaviour
     #region Debug
     public void OnDrawGizmos()
     {
-        if (_startPoint is not null && _endPoint is not null)
+        if (m_startPoint is not null && m_endPoint is not null)
         {
             Gizmos.color = Color.blue;
-            Gizmos.DrawLine(_startPoint.position, _endPoint.position);
+            Gizmos.DrawLine(m_startPoint.position, m_endPoint.position);
         }
     }
     #endregion
