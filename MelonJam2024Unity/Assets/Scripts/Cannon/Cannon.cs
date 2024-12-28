@@ -6,17 +6,18 @@ using UnityEngine.Events;
 
 public class MoveCannon : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 1f;
+    [SerializeField] private float _moveSpeed = 4f;
     [SerializeField] private Transform _scrapPickupY;
     [SerializeField] private Transform _cannon;
     [SerializeField] private Transform _scrapHoldPos;
     [SerializeField] private Bullet _bulletPrefab;
-    [SerializeField] private UnityEvent<bool> _switchPolarity;
+    [SerializeField, Tooltip("True for magnet turns on")] private UnityEvent<bool> _onSwitchPolarity;
     private List<float> _lanePositions = new();
     private bool _isMoving = false;
     private Vector3 _currentTarget = new();
     private List<Bullet> _holdingScrap = new();
     private bool _isAttracting = false;
+    private bool _shootNextFrame = false;
 
     /// <summary>
     /// -1 == Pickup; 
@@ -57,19 +58,20 @@ public class MoveCannon : MonoBehaviour
         MoveToLane(_currentLane - 1);
     }
 
-    private Lane GetCurrentLane => EnemySpawner.Instance.m_lanes[_currentLane];
+    private Lane GetCurrentLane => _currentLane != -1 ? EnemySpawner.Instance.m_lanes[_currentLane] : null;
 
     public void SwitchPolarity()
     {
         _isAttracting = !_isAttracting;
-        _switchPolarity?.Invoke(_isAttracting);
+        _onSwitchPolarity?.Invoke(_isAttracting);
         if (_isAttracting)
         {
-            PickupScrap();
+            _shootNextFrame = false;
+            //PickupScrap();
         }
         else
         {
-            Shoot();
+            _shootNextFrame = true;
         }
     }
 
@@ -85,7 +87,7 @@ public class MoveCannon : MonoBehaviour
     public void PickupScrap(List<Bullet> scrap = null)
     {
         //TODO: Pickup for real
-        if (_currentLane != -1)
+        if (_currentLane != -1 || _isMoving) // TODO: Pickup once arrived and continue to pick up until left (or maybe just pickup on leave?)
         {
             return;
         }
@@ -97,6 +99,7 @@ public class MoveCannon : MonoBehaviour
                 Instantiate(_bulletPrefab),
                 Instantiate(_bulletPrefab)
             };
+            _holdingScrap.ForEach(x => x.transform.position = _scrapHoldPos.position);
         }
         else
         {
@@ -147,6 +150,15 @@ public class MoveCannon : MonoBehaviour
             {
                 _isMoving = false;
             }
+        }
+        if (_shootNextFrame && !_isMoving)
+        {
+            Shoot();
+            _shootNextFrame = false;
+        }
+        else if (!_isMoving && _isAttracting && _currentLane == -1 && _holdingScrap.Count == 0)
+        {
+            PickupScrap();
         }
     }
 }

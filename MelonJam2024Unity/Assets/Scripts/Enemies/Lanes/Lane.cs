@@ -48,6 +48,11 @@ public class Lane : MonoBehaviour
     {
         enemy.Advance();
         enemy.UpdatePositionAdvancement(Vector2.Lerp(m_startPoint.position, m_endPoint.position, enemy.m_advancement/_distance));
+        if (enemy.m_advancement >= _distance)
+        {
+            Debug.LogWarning("Loose Condition");
+            EnemySpawner.Instance.m_looseCondition.Invoke();
+        }
     }
 
     private void MoveBullet(Bullet bullet)
