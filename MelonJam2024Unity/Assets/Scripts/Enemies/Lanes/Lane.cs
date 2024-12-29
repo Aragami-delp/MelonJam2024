@@ -57,7 +57,8 @@ public class Lane : MonoBehaviour
         if (enemy.m_advancement >= _distance)
         {
             Debug.LogWarning("Loose Condition");
-            LaneSystem.Instance.m_onLooseCondition.Invoke();
+            //LaneSystem.Instance.m_onLooseCondition.Invoke();
+            GameManager.LoadScene(GameManager.GAMESCENE.UPGRADE);
         }
     }
 
@@ -75,7 +76,8 @@ public class Lane : MonoBehaviour
         if (enemy.m_health <= 0)
         {
             _activeEnemyList.Remove(enemy);
-            LaneSystem.Instance.m_onEnemyDied.Invoke(enemy.m_lootValue);
+            //LaneSystem.Instance.m_onEnemyDied.Invoke(enemy.m_lootValue);
+            GameManager.Instance.Coins += enemy.m_lootValue;
             Destroy(enemy.gameObject); // TODO: Pooling
         }
     }
