@@ -7,6 +7,13 @@ using UnityEngine.Events;
 [DefaultExecutionOrder(-50)]
 public class LaneSystem : MonoBehaviour
 {
+    [Serializable]
+    public struct EnemyPrefabProbabilities
+    {
+        public float m_spawnProbability;
+        public Enemy m_enemyPrefab;
+    }
+
     public static LaneSystem Instance { get; private set; }
 
     [SerializeField, Tooltip("For debugging"), Header("Debugging")] private bool _spawnEnemies = true;
@@ -25,7 +32,7 @@ public class LaneSystem : MonoBehaviour
     /// Lanes from top to bottom
     /// </summary>
     [SerializeField, Tooltip("From top to bottom auto sorted")] public List<Lane> m_lanes = new();
-    [SerializeField] private List<Enemy> _enemyPrefabList = new();
+    [SerializeField] private List<EnemyPrefabProbabilities> _enemyPrefabList = new();
 
     //[SerializeField] public UnityEvent m_onLooseCondition;
     //[SerializeField] public UnityEvent<int> m_onEnemyDied;
@@ -96,9 +103,24 @@ public class LaneSystem : MonoBehaviour
 
     public void SpawnEnemy(Enemy enemyPrefab = null, Lane lane = null)
     {
-        enemyPrefab ??= _enemyPrefabList[UnityEngine.Random.Range(0, _enemyPrefabList.Count)];
+        enemyPrefab ??= GetRandomEnemy();
         lane ??= m_lanes[UnityEngine.Random.Range(0, m_lanes.Count)];
 
         lane.SpawnEnemy(enemyPrefab, m_slowUpgradeMultiplierReduction); 
+    }
+
+    private Enemy GetRandomEnemy()
+    {
+        float randomNumber = UnityEngine.Random.Range(0, _enemyPrefabList.Sum(probability => probability.m_spawnProbability));
+        float cumulative = 0f;
+        foreach (EnemyPrefabProbabilities epp in _enemyPrefabList)
+        {
+            cumulative += epp.m_spawnProbability;
+            if (randomNumber <= cumulative)
+            {
+                return epp.m_enemyPrefab;
+            }
+        }
+        return _enemyPrefabList[0].m_enemyPrefab;
     }
 }

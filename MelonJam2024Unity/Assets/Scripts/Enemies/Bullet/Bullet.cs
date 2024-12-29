@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Bullet : LaneObject
 {
-    [SerializeField] public int m_damage = 1;
+    [SerializeField] public int m_damage = 2;
     [SerializeField] private float _rotateSpeed = 100f;
     [SerializeField] private float _maxFlyHight = 1f;
     [SerializeField, Tooltip("Backwards")] private AnimationCurve _flyCurve;

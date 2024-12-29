@@ -12,6 +12,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] private Transform _cannon;
     [SerializeField] private Transform _scrapHoldPos;
     [SerializeField] private Bullet _bulletPrefab;
+    [SerializeField] private int _startingDamage;
     [SerializeField, Tooltip("True for magnet turns on")] private UnityEvent<bool> _onSwitchPolarity;
 
     private List<float> _lanePositions = new();
@@ -26,14 +27,14 @@ public class Cannon : MonoBehaviour
     public int m_maxScrapCapacity = 1;
     public bool m_autoReload = true;
     public float _moveSpeed = 4f;
-    private int _cannonDamage = 1;
+    private int _cannonUpgradeDamage = 0;
     /// <summary>
     /// Default Value is 1
     /// </summary>
     public int m_cannonDamage
     {
-        get { return _cannonDamage; }
-        set { _cannonDamage = 1 - Mathf.Clamp(value, 1, 1000); }
+        get { return _cannonUpgradeDamage; }
+        set { _cannonUpgradeDamage = Mathf.Clamp(value, 1, 1000); }
     }
     #endregion
 
@@ -125,7 +126,7 @@ public class Cannon : MonoBehaviour
         _holdingScrap = scrap;
         _holdingScrap.ForEach(bullet =>
             {
-                bullet.m_damage = m_cannonDamage;
+                bullet.m_damage = _startingDamage + m_cannonDamage;
                 bullet.transform.position = _scrapHoldPos.position;
                 bullet.transform.SetParent(null);
                 bullet.enabled = true;
