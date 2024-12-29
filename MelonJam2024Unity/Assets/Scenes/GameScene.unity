@@ -119,6 +119,76 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &85008037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 341922042}
+    m_Modifications:
+    - target: {fileID: 3224089669344115393, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: MaxHP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3224089669344115393, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: scrapCapacity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763984831453577902, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+      propertyPath: m_Name
+      value: ScrapPile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+--- !u!4 &85008038 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4321313130900301552, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
+  m_PrefabInstance: {fileID: 85008037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &156926219 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2011177262413586036, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
@@ -166,7 +236,7 @@ Transform:
   - {fileID: 197144493}
   - {fileID: 1215224538}
   - {fileID: 156926219}
-  - {fileID: 987539333}
+  - {fileID: 85008038}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &363981837
@@ -707,53 +777,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 909401265451586190, guid: 1e34559e283cdd6488bdeb0111820dec, type: 3}
   m_PrefabInstance: {fileID: 1109370890}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &987539332
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 987539333}
-  - component: {fileID: 987539334}
-  m_Layer: 0
-  m_Name: ScrapPileManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &987539333
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987539332}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.5, y: -1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 341922042}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &987539334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 987539332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39731c4bdb60ea74fa2e74959c360c21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pileDimensions: {x: 4, y: 2}
-  scrapSpawnAmount: 6
-  pilePrefab: {fileID: 5763984831453577902, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
 --- !u!1001 &1109370890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1245,11 +1268,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7535174911865175060, guid: 89fde4fbdbe8a454a962710642c45703, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.01
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7535174911865175060, guid: 89fde4fbdbe8a454a962710642c45703, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.92
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7535174911865175060, guid: 89fde4fbdbe8a454a962710642c45703, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1580,10 +1603,6 @@ PrefabInstance:
     - target: {fileID: 6549256192649084012, guid: 80da2932236c48342bdd935924e916c2, type: 3}
       propertyPath: m_Name
       value: Cannon Rail
-      objectReference: {fileID: 0}
-    - target: {fileID: 6865002774154590078, guid: 80da2932236c48342bdd935924e916c2, type: 3}
-      propertyPath: m_maxScrapCapacity
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
