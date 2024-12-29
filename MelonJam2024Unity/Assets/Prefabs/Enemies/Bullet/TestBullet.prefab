@@ -190,7 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tilesSpeed: 1
   m_advancement: 0
-  m_damage: 1
+  m_damage: 2
   _rotateSpeed: 100
   _maxFlyHight: 1
   _flyCurve:
