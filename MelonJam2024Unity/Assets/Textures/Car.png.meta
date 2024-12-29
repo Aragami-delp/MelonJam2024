@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c50dc9e5a23c9a3488a886f18ced6b92
+guid: 0c4cc1b905bd9294f9ee666366e80fb4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6643970495581417638
-    second: upg-lane-capacity_0
+      213: -7921649188387484213
+    second: Car_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: upg-lane-capacity_0
+      name: Car_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 81
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6a07e47e6ff143c50800000000000000
-      internalID: 6643970495581417638
+      spriteID: bcd07eaa806a01290800000000000000
+      internalID: -7921649188387484213
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      upg-lane-capacity_0: 6643970495581417638
+      Car_0: -7921649188387484213
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

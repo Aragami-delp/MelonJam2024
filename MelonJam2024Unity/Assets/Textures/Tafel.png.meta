@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 515787977c3f715449dd235faa3a7746
+guid: f68da18515406804fada812ae3e018c9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8745578663432910123
-    second: Tasche_0
+      213: 8398127345444913291
+    second: Tafel_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tasche_0
+      name: Tafel_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
+        x: 43
+        y: 15
+        width: 554
+        height: 337
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b25772555798e5970800000000000000
-      internalID: 8745578663432910123
+      spriteID: b800db353542c8470800000000000000
+      internalID: 8398127345444913291
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tasche_0: 8745578663432910123
+      Tafel_0: 8398127345444913291
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
