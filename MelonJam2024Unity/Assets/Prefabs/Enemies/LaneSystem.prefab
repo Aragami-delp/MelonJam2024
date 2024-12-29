@@ -733,7 +733,7 @@ MonoBehaviour:
   _enemyPrefabList:
   - {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
   _upgradeScene: 0
-  LandMinesActive: 1
+  LandMinesActive: 0
 --- !u!1 &4077142356690386858
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@ public class LaneSystem : MonoBehaviour
     //[SerializeField] public UnityEvent m_onLooseCondition;
     //[SerializeField] public UnityEvent<int> m_onEnemyDied;
     
-    public bool LandMinesActive = true; 
+    public bool LandMinesActive = false; 
     
     public void LoadUpgradeScene()
     {
