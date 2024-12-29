@@ -6,10 +6,7 @@ public class ScrapPile : MonoBehaviour
     private GameObject[] lootPool; 
 
     [SerializeField]
-    private int MaxHP,HP, scrapCapacity = 2;
-
-
-    public int ScrapCapacity { get { return scrapCapacity; } set { scrapCapacity = value; } }
+    public int MaxHP,HP, ScrapCapacity = 2;
 
     private int scrapspent;
 
