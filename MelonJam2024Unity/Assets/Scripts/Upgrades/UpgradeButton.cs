@@ -106,6 +106,8 @@ public class UpgradeButton : MonoBehaviour
 
     public void UnlockChildConnectors(Upgrade connection)
     {
+        SetImageUnlocked();
+
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform child = transform.GetChild(i);
@@ -120,7 +122,6 @@ public class UpgradeButton : MonoBehaviour
                 );
 
                 child.gameObject.GetComponent<LineRenderer>().colorGradient = blackGradient;
-
                 return;
             }
         }
@@ -133,10 +134,21 @@ public class UpgradeButton : MonoBehaviour
         if (icon != null)
         {
             transform.GetChild(0).GetComponent<Image>().sprite = icon;
+           
         }
         else
         {
             Debug.LogWarning($"Icon '{name}' not found in Resources");
+        }
+    }
+
+    public void SetImageUnlocked() 
+    {
+        Image[] images = transform.GetComponentsInChildren<Image>();
+
+        foreach (var image in images)
+        {
+            image.color = Color.white;
         }
     }
 }

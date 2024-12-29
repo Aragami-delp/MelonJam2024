@@ -249,29 +249,20 @@ public class Upgrade
 
     public void ParentUnlocked(Upgrade parent)
     {
- 
+        
         parents.Remove(parent);
 
         if (!activatedParents.Contains(parent))
         {
             activatedParents.Add(parent);
         }
-        try 
-        { 
-        
-            Debug.Log("my remaining parents are " + parents[0].IDName);
-        }
-        catch 
-        { 
-        
-        }
 
         if (parents.Count <= 0 && upgradeButton != null)
-        {
-            Debug.Log("I was Unlocked by " + parent.IDName + " at Level " + parent.Level);
-            
+        {   
+
             Unlocked = true;
             upgradeButton.GetComponent<Button>().enabled = true;
+            upgradeButton.SetImageUnlocked();
 
             for (int i = 0; i < activatedParents.Count; i++)
             {
