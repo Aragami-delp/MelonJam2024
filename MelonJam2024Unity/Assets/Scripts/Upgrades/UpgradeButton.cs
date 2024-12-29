@@ -38,7 +38,7 @@ public class UpgradeButton : MonoBehaviour
         }
     }
 
-    void Start()
+    public void Start()
     {
         GetComponent<Button>().enabled = upgrade.Unlocked;
         
@@ -74,7 +74,7 @@ public class UpgradeButton : MonoBehaviour
 
         }
 
-        if (beginningUpgrade) 
+        if (beginningUpgrade && Upgrade.BeginningUpgrade.Level == 0) 
         {
             for (int i = 1; i < transform.childCount; i++)
             {
@@ -96,7 +96,7 @@ public class UpgradeButton : MonoBehaviour
             return;
         }
 
-        upgrade.UpgradeBought(false);
+        upgrade.UpgradeBought(false, true);
 
         if (UiBought)
         {
