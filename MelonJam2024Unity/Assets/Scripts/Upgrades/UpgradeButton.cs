@@ -35,10 +35,11 @@ public class UpgradeButton : MonoBehaviour
             SetUpgrade(Upgrade.BeginningUpgrade);
             SetIcon(upgrade.Icon);
             upgrade.ConnectToButton(this, false);
+            InitConnections();
         }
     }
 
-    public void Start()
+    public void InitConnections()
     {
         GetComponent<Button>().enabled = upgrade.Unlocked;
         
