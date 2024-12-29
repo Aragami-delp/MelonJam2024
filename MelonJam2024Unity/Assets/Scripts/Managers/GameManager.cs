@@ -1,7 +1,13 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GAMESCENE
+    {
+        UPGRADE,
+        INGAME
+    }
     public static GameManager Instance { get; private set; }
 
     public int Coins;
@@ -26,5 +32,10 @@ public class GameManager : MonoBehaviour
         }
 
         return false; 
+    }
+
+    public static void LoadScene(GAMESCENE scene)
+    {
+        SceneManager.LoadScene(scene == GAMESCENE.UPGRADE ? 0 : 1);
     }
 }

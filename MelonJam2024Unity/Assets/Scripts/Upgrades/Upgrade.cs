@@ -212,12 +212,7 @@ public class Upgrade
         upgradeButton.GetComponent<UpgradeButton>().UnlockChildConnectors(upgrade);
     }
 
-    public void DefaultPriceIncrease() 
-    { 
-        // Exponential Growth
-        Cost += (int)(BaseCost * Math.Pow((double)1.2, Level - 1));
-    }
-    public void DefaultPriceIncrease(float increment)
+    public void DefaultPriceIncrease(float increment = 1.2f)
     {
         // Exponential Growth
         Cost += (int)(BaseCost * Math.Pow(increment, Level - 1));
