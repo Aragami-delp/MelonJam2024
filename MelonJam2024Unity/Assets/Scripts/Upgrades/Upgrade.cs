@@ -233,6 +233,7 @@ public class Upgrade
 
         if (!ingame)
         {
+            upgradeButton.SetImageUnlocked();
             ResolveUnlockes();
         }
 
@@ -262,7 +263,6 @@ public class Upgrade
 
             Unlocked = true;
             upgradeButton.GetComponent<Button>().enabled = true;
-            upgradeButton.SetImageUnlocked();
 
             for (int i = 0; i < activatedParents.Count; i++)
             {
