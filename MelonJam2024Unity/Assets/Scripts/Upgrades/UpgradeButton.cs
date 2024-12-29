@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class UpgradeButton : MonoBehaviour
 {
+    [SerializeField]
+    private bool beginningUpgrade = false; 
+
     private Upgrade upgrade;
     public string IDName { get { return upgrade.IDName; } }
     public string DisplayName { get { return upgrade.Name; } }
@@ -28,6 +31,12 @@ public class UpgradeButton : MonoBehaviour
 
     void Start()
     {
+
+        if (beginningUpgrade) 
+        {
+            SetUpgrade(Upgrade.BeginningUpgrade);
+        }
+
         GetComponent<Button>().enabled = upgrade.Unlocked;
         
         for (int i = 0; i < upgrade.Children.Length; i++)
@@ -103,6 +112,20 @@ public class UpgradeButton : MonoBehaviour
 
                 return;
             }
+        }
+    }
+
+    public void SetIcon(string name) 
+    {
+        Sprite icon = Resources.Load<Sprite>(name);
+
+        if (icon != null)
+        {
+            transform.GetChild(0).GetComponent<Image>().sprite = icon;
+        }
+        else
+        {
+            Debug.LogWarning($"Icon '{name}' not found in Resources");
         }
     }
 }

@@ -8,7 +8,6 @@ public class Cannon : MonoBehaviour
 {
     public static Cannon Instance { get; private set; }
 
-    [SerializeField] private float _moveSpeed = 4f;
     [SerializeField] private Transform _scrapPickupY;
     [SerializeField] private Transform _cannon;
     [SerializeField] private Transform _scrapHoldPos;
@@ -26,6 +25,7 @@ public class Cannon : MonoBehaviour
     [Header("Upgrades")]
     public int m_maxScrapCapacity = 1;
     public bool m_autoReload = true;
+    public float _moveSpeed = 4f;
     #endregion
 
     private void Awake()

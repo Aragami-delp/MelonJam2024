@@ -752,7 +752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pileDimensions: {x: 4, y: 2}
-  scrapSpawnAmount: 6
+  scrapSpawnAmount: 1
   pilePrefab: {fileID: 5763984831453577902, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
 --- !u!1001 &1109370890
 PrefabInstance:
@@ -1296,10 +1296,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1035353434278641439, guid: c55ea855407af01439d78871ba91a35e, type: 3}
-      propertyPath: m_SortingOrder
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 5813024481468398887, guid: c55ea855407af01439d78871ba91a35e, type: 3}
       propertyPath: m_Name
       value: InGameCanvas

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Linq; 
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -14,10 +15,8 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField]
     GameObject upgradeButtonPrefab;
 
-    [SerializeField]
-    Transform UiCanvas;
 
-    public static List<UpgradeNameValuePair> BoughtUpgraders = new List<UpgradeNameValuePair>();
+    public static List<UpgradeNameValuePair> BoughtUpgraders;
 
     
 
@@ -30,29 +29,12 @@ public class UpgradeManager : MonoBehaviour
         }
 
         Instance = this;
+        BoughtUpgraders = new List<UpgradeNameValuePair>();
 
         DontDestroyOnLoad(gameObject);
 
-        for (int i = 0; i < Upgrade.Upgrades.Length; i++)
-        {
-            GameObject newButton = Instantiate(upgradeButtonPrefab, Upgrade.Upgrades[i].Pos * 4f, Quaternion.identity);
-            newButton.transform.SetParent(UiCanvas);
-            newButton.transform.localScale = Vector3.one;
-            Upgrade.Upgrades[i].ConnectToButton(newButton);
-            newButton.GetComponent<UpgradeButton>().SetUpgrade(Upgrade.Upgrades[i]);
-            
-            Sprite icon = Resources.Load<Sprite>(Upgrade.Upgrades[i].Icon);
-            
-            if (icon != null) 
-            {
-                newButton.GetComponent<Image>().sprite = icon;
-            }
-            else 
-            {
-                Debug.LogWarning($"Icon '{Upgrade.Upgrades[i].Icon}' not found in Resources");
-            }
-            
-        }
+        // init upgrades in UI 
+        LoadUpgrades(false);
 
         SceneManager.sceneLoaded += ChangedScene;
     }
@@ -61,7 +43,7 @@ public class UpgradeManager : MonoBehaviour
     {
         UnloadUpgrades();
         LoadUpgrades(scene.name != "UpgradeScene");
-
+        Debug.Log("Loaded Upgrades");
     }
 
 
@@ -91,7 +73,34 @@ public class UpgradeManager : MonoBehaviour
 
     public static void LoadUpgrades(bool ingame)
     {
-        foreach (var upgrade in BoughtUpgraders)
+        if (!ingame) 
+        {
+            Transform upgradeParent = GameObject.Find("UpgradeParent").transform;
+            
+            if (Upgrade.BeginningUpgrade.Level == 1) 
+            {
+                Upgrade.BeginningUpgrade.UpgradeBought(false);
+            }
+
+            Instance.detailsTransform = GameObject.Find("Details");
+
+            for (int i = 0; i < Upgrade.Upgrades.Length; i++)
+            {
+                GameObject newButton = Instantiate(Instance.upgradeButtonPrefab, Upgrade.Upgrades[i].Pos * 4f, Quaternion.identity);
+                newButton.transform.SetParent(upgradeParent);
+                newButton.transform.localScale = Vector3.one;
+
+                UpgradeButton upgButton = newButton.GetComponent<UpgradeButton>();
+
+                Upgrade.Upgrades[i].ConnectToButton(upgButton);
+
+                upgButton.SetUpgrade(Upgrade.Upgrades[i]);
+                upgButton.SetIcon(Upgrade.Upgrades[i].Icon);
+
+            }
+        }
+
+        foreach (var upgrade in BoughtUpgraders.ToList())
         {
             for (int i = 0; i < Upgrade.Upgrades.Length; i++)
             {
@@ -108,7 +117,7 @@ public class UpgradeManager : MonoBehaviour
 
     public static void UnloadUpgrades()
     {
-        foreach (var upgrade in BoughtUpgraders)
+        foreach (var upgrade in BoughtUpgraders.ToList())
         {
             for (int i = 0; i < Upgrade.Upgrades.Length; i++)
             {

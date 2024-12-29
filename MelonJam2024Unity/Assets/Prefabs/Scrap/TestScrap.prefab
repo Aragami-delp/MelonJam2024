@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b424f2b821f1ed479e1e6aa2b886ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tilesSpeed: 1
+  m_tilesSpeed: 4
   m_advancement: 0
   m_damage: 1
   _rotateSpeed: 100
