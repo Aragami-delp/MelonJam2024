@@ -2,21 +2,33 @@ using UnityEngine;
 
 public class ScrapManager : MonoBehaviour
 {
+    public static ScrapManager Instance { get; private set; } 
+    
     [Header("Bro idk how to name this... describes how many Scrap can exist on the x / y ")]
     [SerializeField]
     Vector2 pileDimensions;
 
-    [SerializeField]
-    private int scrapSpawnAmount; 
+    
+    public int scrapSpawnAmount = 1;
 
-    public static int ScrapSpawnAmount = 1;
+    public int scrapCapacityMultiplier = 1;
 
     [SerializeField]
     private GameObject pilePrefab;
-
     private void Awake()
     {
-        ScrapSpawnAmount = scrapSpawnAmount; 
+        if (Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+        //DontDestroyOnLoad(this);
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
     }
 
     private void Start()
@@ -36,8 +48,10 @@ public class ScrapManager : MonoBehaviour
                 newPile.transform.localPosition = new Vector2(x * 2, y * -2 ); 
 
                 ScrapPile pile = newPile.GetComponent<ScrapPile>();
-
-                if (scrapSpawned >= ScrapSpawnAmount)
+                pile.MaxHP *= scrapCapacityMultiplier;
+                pile.ScrapCapacity *= scrapCapacityMultiplier;
+                
+                if (scrapSpawned >= scrapSpawnAmount)
                 {
                     return;
                 }

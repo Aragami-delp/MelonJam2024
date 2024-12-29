@@ -1,13 +1,14 @@
 using UnityEngine;
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public class ScrapTable : MonoBehaviour
 {
     [SerializeField]
-    Transform[] tables; 
-
+    Transform[] tables;
+    
     [SerializeField]
-    int maxCapacity = 4;
+    public int MaxCapacity = 4;
     
     public List<Bullet> Scrap = new List<Bullet>();
 
@@ -22,13 +23,13 @@ public class ScrapTable : MonoBehaviour
     {
         if (caller.TryGetComponent(out PlayerController player)) 
         {
-            if (maxCapacity <= Scrap.Count)
+            if (MaxCapacity <= Scrap.Count)
             {
                 UiManager.DisplayDamageText("Table Full!", transform.position, Color.white);
                 return;
             }
 
-            TryAddScrap(player.TryGetScrap(maxCapacity - Scrap.Count));
+            TryAddScrap(player.TryGetScrap(MaxCapacity - Scrap.Count));
         }
 
         //TODO: Add bot handeling

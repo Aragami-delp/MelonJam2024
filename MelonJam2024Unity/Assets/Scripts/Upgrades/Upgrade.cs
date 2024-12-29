@@ -54,7 +54,7 @@ public class Upgrade
 
                 if (!isIngame) { return; }
 
-                Cannon.Instance._moveSpeed++; //TODO FIX CODE
+                Cannon.Instance.m_cannonDamage++;
             }
         ),
         new Upgrade(
@@ -237,7 +237,7 @@ public class Upgrade
 
                 if (!isIngame) { return; }
 
-                ScrapManager.ScrapSpawnAmount++;
+                ScrapManager.Instance.scrapSpawnAmount++;
             }
         ),
         new Upgrade(
@@ -257,7 +257,7 @@ public class Upgrade
 
                 if (!isIngame) { return; }
 
-                ScrapManager.ScrapSpawnAmount++;
+                ScrapManager.Instance.scrapCapacityMultiplier++;
             }
         ),
         new Upgrade(
@@ -277,7 +277,7 @@ public class Upgrade
 
                 if (!isIngame) { return; }
 
-                ScrapManager.ScrapSpawnAmount++;
+                ScrapTable.Instance.MaxCapacity++;
             }
         )
     };
