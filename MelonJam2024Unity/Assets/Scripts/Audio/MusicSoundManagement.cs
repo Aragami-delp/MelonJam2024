@@ -28,7 +28,7 @@ public class MusicSoundManagement : MonoBehaviour
     /// Plays an AudioClip on a given Source
     /// </summary>
     /// <param name="audioType"></param>
-    public void PlayAudio(AUDIOTYPE audioType, bool loop = false)
+    public void PlayAudio(AUDIOTYPE audioType)
     {
         foreach (AudioReference reference in _sfxReferences.ToList())
         {
@@ -42,12 +42,12 @@ public class MusicSoundManagement : MonoBehaviour
         Debug.LogWarning($"Can't find AudioClip for {audioType.ToString()}");
     }
 
-    public void StopLoop(AUDIOTYPE audioType)
+    public void StopSFXLoop(AUDIOTYPE audioType)
     {
 
     }
 
-    public void PlaySfxSource(AUDIOTYPE audioType)
+    public void PlaySfx(AUDIOTYPE audioType, bool loop = false, bool allowMultipleLoop = false)
     {
         foreach (AudioReference reference in _sfxReferences.ToList())
         {
