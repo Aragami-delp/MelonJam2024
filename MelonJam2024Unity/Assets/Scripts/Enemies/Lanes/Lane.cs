@@ -10,14 +10,18 @@ public class Lane : MonoBehaviour
     [SerializeField] public Transform m_startPoint;
     [SerializeField] public Transform m_endPoint;
     [SerializeField] private SpriteRenderer _activeIndicator;
+    [SerializeField] private SpriteRenderer _landMineIndicator;
 
     private List<Enemy> _activeEnemyList = new();
     private List<Bullet> _activeBulletList = new();
     [SerializeField, InspectorName("Tiles Distance")] private float _distance = 5f;
 
+    private bool landMineExploded = false;
+
     private void Start()
     {
         //_distance = Vector2.Distance(_startPoint.position, _endPoint.position);
+        _landMineIndicator.enabled = LaneSystem.Instance.LandMinesActive;
     }
 
     public void SetLaneIndicator(bool active)
@@ -44,7 +48,7 @@ public class Lane : MonoBehaviour
 
     private void Update()
     {
-        _activeEnemyList.ForEach(enemy => MoveEnemy(enemy));
+        _activeEnemyList.ToList().ForEach(enemy => MoveEnemy(enemy));
         _activeBulletList.ForEach(bullet => MoveBullet(bullet));
         BulletCollisionCheck();
         // Check for bullets out of bounds on lane without enemies
@@ -56,6 +60,12 @@ public class Lane : MonoBehaviour
         enemy.UpdatePositionAdvancement(Vector2.Lerp(m_startPoint.position, m_endPoint.position, enemy.m_advancement/_distance));
         if (enemy.m_advancement >= _distance)
         {
+            if (!landMineExploded && LaneSystem.Instance.LandMinesActive)
+            {
+                TriggerLandMine(enemy);
+                return;
+            }
+            
             Debug.LogWarning("Loose Condition");
             //LaneSystem.Instance.m_onLooseCondition.Invoke();
             LaneSystem.Instance.LoadUpgradeScene();
@@ -75,11 +85,23 @@ public class Lane : MonoBehaviour
         enemy.m_health -= bullet.m_damage;
         if (enemy.m_health <= 0)
         {
-            _activeEnemyList.Remove(enemy);
-            //LaneSystem.Instance.m_onEnemyDied.Invoke(enemy.m_lootValue);
-            if (GameManager.Instance) GameManager.Instance.Coins += enemy.m_lootValue;
-            Destroy(enemy.gameObject); // TODO: Pooling
+            KillEnemy(enemy);
         }
+    }
+
+    private void KillEnemy(Enemy enemy)
+    {
+        _activeEnemyList.Remove(enemy);
+        //LaneSystem.Instance.m_onEnemyDied.Invoke(enemy.m_lootValue);
+        if (GameManager.Instance) GameManager.Instance.Coins += enemy.m_lootValue;
+        Destroy(enemy.gameObject); // TODO: Pooling
+    }
+
+    private void TriggerLandMine(Enemy enemy)
+    {
+        landMineExploded = true;
+        _landMineIndicator.enabled = false;
+        KillEnemy(enemy);
     }
 
     private void BulletCollisionCheck()
