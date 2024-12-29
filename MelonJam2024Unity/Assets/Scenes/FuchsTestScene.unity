@@ -279,16 +279,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07bde8855a2d274583b5e46ba1520d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  printClickText: 0
   OnTrigger:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 156926222}
+        m_TargetAssemblyTypeName: ScrapTable, Assembly-CSharp
+        m_MethodName: OnInteractedWith
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -311,7 +312,8 @@ MonoBehaviour:
   - {fileID: 1495504107}
   - {fileID: 402185215}
   - {fileID: 1293397198}
-  maxCapacity: 4
+  maxCapacity: 5
+  Scrap: []
 --- !u!4 &197144493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7535174911865175060, guid: 89fde4fbdbe8a454a962710642c45703, type: 3}
@@ -504,6 +506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07bde8855a2d274583b5e46ba1520d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  printClickText: 1
   OnTrigger:
     m_PersistentCalls:
       m_Calls:
@@ -666,6 +669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07bde8855a2d274583b5e46ba1520d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  printClickText: 1
   OnTrigger:
     m_PersistentCalls:
       m_Calls:
@@ -1533,6 +1537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07bde8855a2d274583b5e46ba1520d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  printClickText: 1
   OnTrigger:
     m_PersistentCalls:
       m_Calls:
@@ -1675,6 +1680,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1035353434278641439, guid: c55ea855407af01439d78871ba91a35e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5813024481468398887, guid: c55ea855407af01439d78871ba91a35e, type: 3}
       propertyPath: m_Name
       value: InGameCanvas

@@ -9,28 +9,68 @@ public class ScrapTable : MonoBehaviour
     [SerializeField]
     int maxCapacity = 4;
     
-    List<Transform> scrap = new List<Transform>(); 
-    
-    public void TryAddScrap(List<Transform> scrapList) 
+    public List<Bullet> Scrap = new List<Bullet>();
+
+    public static ScrapTable Instance;
+
+    private void Awake()
     {
-        if (maxCapacity <= scrap.Count) 
-        {
-            UiManager.DisplayDamageText("Table Full!",transform.position);
-            return; 
-        }
-        
-        int endIndex = 0; 
-        for (int i = 0; i < scrapList.Count; i++)
-        {
-            scrap.Add(scrapList[i]); 
+        Instance = this; 
+    }
 
-            if (maxCapacity <= scrap.Count) 
+    public void OnInteractedWith(GameObject caller) 
+    {
+        if (caller.TryGetComponent(out PlayerController player)) 
+        {
+            if (maxCapacity <= Scrap.Count)
             {
-                endIndex = i; 
-                break; 
+                UiManager.DisplayDamageText("Table Full!", transform.position, Color.white);
+                return;
             }
+
+            TryAddScrap(player.TryGetScrap(maxCapacity - Scrap.Count));
         }
 
-        scrapList.RemoveRange(0,endIndex);
+        //TODO: Add bot handeling
+        /*
+        else if (caller.TryGetComponent(out Robot robot)) 
+        { 
+        
+        }
+        */
+    }
+
+    public void TryAddScrap(List<Bullet> scrapList) 
+    {
+        Scrap.AddRange(scrapList);
+
+        foreach (var scrap in scrapList)
+        {
+            Transform newParent = tables[Random.Range(0, tables.Length)];
+
+            // DisableFollow
+            scrap.GetComponent<DelayedFollow>().enabled = false;
+
+            scrap.transform.SetParent(newParent);
+            scrap.transform.localPosition = Random.insideUnitSphere * 0.5f;
+        }
+    }
+
+    public List<Bullet> TryGetScrap(int amount) 
+    {
+        List<Bullet> returnList = new List<Bullet>();
+
+        if (amount < Scrap.Count) 
+        {
+            returnList = Scrap.GetRange(0,amount);
+            Scrap.RemoveRange(0,amount);
+        }
+        else 
+        {
+            returnList =  Scrap.GetRange(0, Scrap.Count);
+            Scrap.Clear(); 
+        }
+
+        return returnList; 
     }
 }

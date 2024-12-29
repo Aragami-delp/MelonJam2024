@@ -28,7 +28,8 @@ public class UiManager : MonoBehaviour
         textComponent.text = text;
         textComponent.color = color; 
 
-        newText.position = targetpos + Vector3.up * Random.Range(-0.5f, 0.5f);
+        newText.position = targetpos + Vector3.up * Random.Range(-0.5f, 0.5f) + Vector3.back;
+
         newText.rotation = Quaternion.Euler(0,0,Random.Range(-50f, 50f)); 
 
         Destroy(newText.gameObject, 1f);

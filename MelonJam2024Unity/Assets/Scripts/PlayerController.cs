@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public int MaxCarringCapacity { get; set; } = 5;
 
-    List<Transform> Scrap = new List<Transform>(); 
+    public List<Bullet> Scrap = new List<Bullet>(); 
 
     [SerializeField] 
     private float speed = 10f;
@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.collider.gameObject.TryGetComponent(out InteractableButton button))
                 {
-                    button.InvokeButton();
+                    button.InvokeButton(gameObject);
                 }
             }
 
@@ -171,11 +171,29 @@ public class PlayerController : MonoBehaviour
         return Scrap.Count + 1 <= MaxCarringCapacity;
     }
 
-    public void GiveLoot(Transform newScrap) 
+    public void GiveLoot(Bullet newScrap) 
     {
         Scrap.Add(newScrap);
-        newScrap.SetParent(transform);
-        newScrap.localPosition = new Vector3(0,Scrap.Count,0);
+        newScrap.transform.SetParent(transform);
+        newScrap.transform.localPosition = new Vector3(0,Scrap.Count,0);
+    }
+
+    public List<Bullet> TryGetScrap(int amount)
+    {
+        List<Bullet> returnList = new List<Bullet>();
+
+        if (amount < Scrap.Count)
+        {
+            returnList = Scrap.GetRange(0, amount);
+            Scrap.RemoveRange(0, amount);
+        }
+        else
+        {
+            returnList = Scrap.GetRange(0, Scrap.Count);
+            Scrap.Clear();
+        }
+
+        return returnList;
     }
 
     public enum Direction

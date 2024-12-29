@@ -3,11 +3,15 @@ using UnityEngine.Events;
 
 public class InteractableButton: MonoBehaviour
 {
-    public UnityEvent OnTrigger;
+    [SerializeField]
+    private bool printClickText = true;
+    
+    public UnityEvent<GameObject> OnTrigger;
 
-    public void InvokeButton() 
+    public void InvokeButton(GameObject caller) 
     {
-        UiManager.DisplayDamageText("Click!",transform.position + Vector3.up);
-        OnTrigger.Invoke();
+        if(printClickText)  UiManager.DisplayDamageText("Click!",transform.position + Vector3.up);
+
+        OnTrigger.Invoke(caller);
     }
 }
