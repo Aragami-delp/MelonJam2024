@@ -9,8 +9,9 @@ public class LaneSystem : MonoBehaviour
 {
     public static LaneSystem Instance { get; private set; }
 
-    [SerializeField] private float _minSpawnDelay = 0.5f;
-    [SerializeField] private float _maxSpawnDelay = 1.0f;
+    [SerializeField, Range(1f, 20f)] private float _minSpawnDelay = 5f;
+    [SerializeField, Range(1f, 20f)] private float _maxSpawnDelay = 10f;
+    [SerializeField, Range(1f, 20f)] private float _initialSpawnDelay = 10f;
     private float _currentSpawnDelay = 0.75f;
     private float _timeSinceLastSpawn = 0f;
 
@@ -46,7 +47,7 @@ public class LaneSystem : MonoBehaviour
         if (m_lanes is null || m_lanes.Count == 0) m_lanes = GetComponentsInChildren<Lane>().ToList();
         m_lanes = m_lanes.OrderByDescending(y => y.m_endPoint.position.y).ToList();
 
-        _currentSpawnDelay = UnityEngine.Random.Range(_minSpawnDelay, _maxSpawnDelay);
+        _currentSpawnDelay = UnityEngine.Random.Range(_minSpawnDelay, _maxSpawnDelay) + _initialSpawnDelay;
     }
 
     private void Update()
@@ -69,16 +70,6 @@ public class LaneSystem : MonoBehaviour
             m_lanes[newlyActiveLane].SetLaneIndicator(m_onLaneSprite);
         }
         m_lanes.Where((lane, index) => index != newlyActiveLane).ToList().ForEach(x => x.SetLaneIndicator(false));
-    }
-
-    [ContextMenu("SpawnEnemy")]
-    [Obsolete("Only for the inspector")]
-    public void SpawnOneRandomEnemy()
-    {
-        if (Application.isPlaying)
-        {
-            SpawnEnemy();
-        }
     }
 
     public void SpawnEnemy(Enemy enemyPrefab = null, Lane lane = null)

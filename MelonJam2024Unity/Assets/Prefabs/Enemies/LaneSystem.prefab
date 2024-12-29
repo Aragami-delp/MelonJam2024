@@ -542,8 +542,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea6a41434ed3c44e8534cfe6e99e16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minSpawnDelay: 3
-  _maxSpawnDelay: 8
+  _minSpawnDelay: 5
+  _maxSpawnDelay: 10
+  _initialSpawnDelay: 1
   m_onLaneSprite: {fileID: 6751513010459366182, guid: 8c0595d98bb6b254fa2bc586464b9522, type: 3}
   m_lanes:
   - {fileID: 6156791491943027733}
@@ -553,10 +554,10 @@ MonoBehaviour:
   - {fileID: 5338900097228087136}
   _enemyPrefabList:
   - {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
-  m_looseCondition:
+  m_onLooseCondition:
     m_PersistentCalls:
       m_Calls: []
-  m_enemyDied:
+  m_onEnemyDied:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &4729783676500230942
@@ -734,7 +735,7 @@ Transform:
   m_GameObject: {fileID: 7472337738797007661}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.94, z: 0}
+  m_LocalPosition: {x: 0, y: 1.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
