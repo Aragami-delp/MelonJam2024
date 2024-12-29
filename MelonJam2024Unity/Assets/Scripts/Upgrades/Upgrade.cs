@@ -150,7 +150,7 @@ public class Upgrade
             (self, isIngame) =>
             {
                 if (!isIngame) { return; }
-                LaneSystem.Instance.LandMinesActive = true;
+                LaneSystem.Instance.m_landMinesActive = true;
             }
         ),
     };

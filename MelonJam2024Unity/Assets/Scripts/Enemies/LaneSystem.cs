@@ -9,6 +9,10 @@ public class LaneSystem : MonoBehaviour
 {
     public static LaneSystem Instance { get; private set; }
 
+    [SerializeField, Tooltip("For debugging"), Header("Debugging")] private bool _spawnEnemies = true;
+    [SerializeField, Tooltip("Scene to load when enemy reaches left side")] private GameManager.GAMESCENE _upgradeScene = GameManager.GAMESCENE.UPGRADE;
+
+    [Header("Main")]
     [SerializeField, Range(1f, 20f)] private float _minSpawnDelay = 5f;
     [SerializeField, Range(1f, 20f)] private float _maxSpawnDelay = 10f;
     [SerializeField, Range(1f, 20f)] private float _initialSpawnDelay = 10f;
@@ -22,12 +26,11 @@ public class LaneSystem : MonoBehaviour
     /// </summary>
     [SerializeField, Tooltip("From top to bottom auto sorted")] public List<Lane> m_lanes = new();
     [SerializeField] private List<Enemy> _enemyPrefabList = new();
-    [SerializeField, Tooltip("Scene to load when enemy reaches left side")] private GameManager.GAMESCENE _upgradeScene = GameManager.GAMESCENE.UPGRADE;
 
     //[SerializeField] public UnityEvent m_onLooseCondition;
     //[SerializeField] public UnityEvent<int> m_onEnemyDied;
     
-    public bool LandMinesActive = false; 
+    [SerializeField, Header("Upgrades")] public bool m_landMinesActive = false; 
     
     public void LoadUpgradeScene()
     {
@@ -60,6 +63,8 @@ public class LaneSystem : MonoBehaviour
 
     private void Update()
     {
+        if (!_spawnEnemies) { return; }
+
         _timeSinceLastSpawn += Time.deltaTime;
 
         if (_timeSinceLastSpawn > _currentSpawnDelay)

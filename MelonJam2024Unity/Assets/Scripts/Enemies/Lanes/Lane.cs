@@ -21,7 +21,7 @@ public class Lane : MonoBehaviour
     private void Start()
     {
         //_distance = Vector2.Distance(_startPoint.position, _endPoint.position);
-        _landMineIndicator.enabled = LaneSystem.Instance.LandMinesActive;
+        _landMineIndicator.enabled = LaneSystem.Instance.m_landMinesActive;
     }
 
     public void SetLaneIndicator(bool active)
@@ -60,7 +60,7 @@ public class Lane : MonoBehaviour
         enemy.UpdatePositionAdvancement(Vector2.Lerp(m_startPoint.position, m_endPoint.position, enemy.m_advancement/_distance));
         if (enemy.m_advancement >= _distance)
         {
-            if (!landMineExploded && LaneSystem.Instance.LandMinesActive)
+            if (!landMineExploded && LaneSystem.Instance.m_landMinesActive)
             {
                 TriggerLandMine(enemy);
                 return;

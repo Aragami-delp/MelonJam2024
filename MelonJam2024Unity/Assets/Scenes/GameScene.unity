@@ -317,6 +317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   printClickText: 1
+  _pressedSprite: {fileID: -5716326439067324758, guid: a0e2616a1d574ba498a617c726a06cad, type: 3}
+  _pressedAnimationTime: 0.5
   OnTrigger:
     m_PersistentCalls:
       m_Calls:
@@ -480,6 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   printClickText: 1
+  _pressedSprite: {fileID: -5114759610483833621, guid: 91b1b4333d6e9bb4b811aee80f085c35, type: 3}
+  _pressedAnimationTime: 0.5
   OnTrigger:
     m_PersistentCalls:
       m_Calls:
@@ -1216,6 +1220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   printClickText: 1
+  _pressedSprite: {fileID: 4721367879463336, guid: e3a4db6d97dafd642acae1fc8ee231f0, type: 3}
+  _pressedAnimationTime: 0.5
   OnTrigger:
     m_PersistentCalls:
       m_Calls:
