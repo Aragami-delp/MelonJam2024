@@ -81,6 +81,7 @@ public class Lane : MonoBehaviour
 
     private void BulletHitEnemy(Bullet bullet, Enemy enemy)
     {
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.SCRAP_HIT);
         _activeBulletList.Remove(bullet);
         Destroy(bullet.gameObject);
         enemy.m_health -= bullet.m_damage;
@@ -103,6 +104,7 @@ public class Lane : MonoBehaviour
         landMineExploded = true;
         _landMineIndicator.enabled = false;
         KillEnemy(enemy);
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.LAND_MINE);
     }
 
     private void BulletCollisionCheck()

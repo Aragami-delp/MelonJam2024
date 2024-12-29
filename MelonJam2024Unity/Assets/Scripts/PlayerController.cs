@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     private static readonly int AnimDirection = Animator.StringToHash("Direction");
     private int layer;
 
+    private bool isMoving = false;
+
     private void Awake()
     {
         layer = LayerMask.GetMask("Interactable");
@@ -101,7 +103,13 @@ public class PlayerController : MonoBehaviour
         } 
         else
         {
+            if (isMoving)
+            {
+                isMoving = false;
+                MusicSoundManagement.Instance.StopSFXLoop(MusicSoundManagement.AUDIOTYPE.FOOT_STEP);
+            }
             _animator.SetInteger(AnimDirection, (int) _direction + 10);
+            //TODO STOP SOUND
         }
         
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, speed * Time.deltaTime);
@@ -114,7 +122,12 @@ public class PlayerController : MonoBehaviour
         if (!hit || hit.distance > 1)
         {
             _targetPosition += direction;
-            _animator.SetInteger(AnimDirection, (int) _direction); 
+            _animator.SetInteger(AnimDirection, (int) _direction);
+            if (!isMoving)
+            {
+                isMoving = true;
+                MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.FOOT_STEP,true);
+            }
         }
         else
         {
