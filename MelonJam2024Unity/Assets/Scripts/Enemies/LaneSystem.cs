@@ -22,9 +22,15 @@ public class LaneSystem : MonoBehaviour
     /// </summary>
     [SerializeField, Tooltip("From top to bottom auto sorted")] public List<Lane> m_lanes = new();
     [SerializeField] private List<Enemy> _enemyPrefabList = new();
+    [SerializeField, Tooltip("Scene to load when enemy reaches left side")] private GameManager.GAMESCENE _upgradeScene = GameManager.GAMESCENE.UPGRADE;
 
     //[SerializeField] public UnityEvent m_onLooseCondition;
     //[SerializeField] public UnityEvent<int> m_onEnemyDied;
+
+    public void LoadUpgradeScene()
+    {
+        GameManager.LoadScene(_upgradeScene);
+    }
 
     private void Awake()
     {
