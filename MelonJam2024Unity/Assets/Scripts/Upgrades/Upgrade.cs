@@ -51,7 +51,7 @@ public class Upgrade
                 {
                     self.DefaultPriceIncrease();
                     if (!isIngame) { return; }
-                    Enemy.m_speedMultiplyer -= 0.05f; 
+                    //Enemy.m_speedMultiplyer -= 0.05f; 
                 }
         ),
 
