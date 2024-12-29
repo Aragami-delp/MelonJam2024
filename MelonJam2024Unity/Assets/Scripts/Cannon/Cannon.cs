@@ -26,6 +26,15 @@ public class Cannon : MonoBehaviour
     public int m_maxScrapCapacity = 1;
     public bool m_autoReload = true;
     public float _moveSpeed = 4f;
+    private int _cannonDamage = 1;
+    /// <summary>
+    /// Default Value is 1
+    /// </summary>
+    public int m_cannonDamage
+    {
+        get { return _cannonDamage; }
+        set { _cannonDamage = 1 - Mathf.Clamp(value, 1, 1000); }
+    }
     #endregion
 
     private void Awake()
@@ -114,11 +123,12 @@ public class Cannon : MonoBehaviour
     {
 
         _holdingScrap = scrap;
-        _holdingScrap.ForEach(x =>
+        _holdingScrap.ForEach(bullet =>
             {
-                x.transform.position = _scrapHoldPos.position;
-                x.transform.SetParent(null);
-                x.enabled = true;
+                bullet.m_damage = m_cannonDamage;
+                bullet.transform.position = _scrapHoldPos.position;
+                bullet.transform.SetParent(null);
+                bullet.enabled = true;
             });
 
 

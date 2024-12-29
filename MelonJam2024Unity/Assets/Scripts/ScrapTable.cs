@@ -58,7 +58,7 @@ public class ScrapTable : MonoBehaviour
 
     public List<Bullet> TryGetScrap(int amount) 
     {
-        List<Bullet> returnList = new List<Bullet>();
+        List<Bullet> returnList = new();
 
         if (amount < Scrap.Count) 
         {

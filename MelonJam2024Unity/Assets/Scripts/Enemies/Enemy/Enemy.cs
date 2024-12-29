@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : LaneObject
 {
-    public static float m_speedMultiplyer = 1; 
+    public float m_speedMultiplyer = 1; 
     [SerializeField] public int m_health = 2;
     [SerializeField] public int m_lootValue = 1;
 

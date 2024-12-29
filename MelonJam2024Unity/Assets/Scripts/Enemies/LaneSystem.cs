@@ -31,13 +31,14 @@ public class LaneSystem : MonoBehaviour
     //[SerializeField] public UnityEvent<int> m_onEnemyDied;
 
     [SerializeField, Header("Upgrades")] public bool m_landMinesActive = false;
+    [SerializeField, Range(0, 1)] private float _slowUpgradeMultiplierReduction = 0.1f;
     /// <summary>
     /// How much percent the enemies get slowed down
     /// </summary>
-    public float m_slowUpgradeMultiplierReduction
+    public float m_slowUpgradeMultiplierReduction // Stupid setter to also be able to update it in the inspector
     {
-        get { return Enemy.m_speedMultiplyer; }
-        set { Enemy.m_speedMultiplyer = 1 - Mathf.Clamp01(value); }
+        get { return _slowUpgradeMultiplierReduction; }
+        set { _slowUpgradeMultiplierReduction = Mathf.Clamp01(value); }
     }
 
     public void LoadUpgradeScene()
@@ -98,6 +99,6 @@ public class LaneSystem : MonoBehaviour
         enemyPrefab ??= _enemyPrefabList[UnityEngine.Random.Range(0, _enemyPrefabList.Count)];
         lane ??= m_lanes[UnityEngine.Random.Range(0, m_lanes.Count)];
 
-        lane.SpawnEnemy(enemyPrefab);
+        lane.SpawnEnemy(enemyPrefab, m_slowUpgradeMultiplierReduction); 
     }
 }
