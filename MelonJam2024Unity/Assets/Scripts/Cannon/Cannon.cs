@@ -80,18 +80,21 @@ public class Cannon : MonoBehaviour
         _isMoving = true;
 
         LaneSystem.Instance.UpdateLaneIndicator(_currentLane);
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.MAGNET_MOVE);
     }
 
     // Top to bottom. Highest lane is 0
     [ContextMenu("Move Lane Down")]
     public void MoveLaneDown()
     {
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.BUTTON_DOWN);
         MoveToLane(_currentLane + 1);
     }
 
     [ContextMenu("Move Lane Up")]
     public void MoveLaneUp()
     {
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.BUTTON_UP);
         MoveToLane(_currentLane - 1);
     }
 
@@ -99,6 +102,8 @@ public class Cannon : MonoBehaviour
 
     public void SwitchPolarity()
     {
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.SWITCH_POLARITY);
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.BUTTON_POLARITY);
         _isAttracting = !_isAttracting;
         _onSwitchPolarity?.Invoke(_isAttracting);
         if (_isAttracting)
@@ -122,7 +127,10 @@ public class Cannon : MonoBehaviour
 
     public void PickupScrap(List<Bullet> scrap = null)
     {
-
+        if (scrap.Count > 0)
+        {
+            MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.MAGNET_SCRAP_ATTACH);
+        }
         _holdingScrap = scrap;
         _holdingScrap.ForEach(bullet =>
             {
@@ -172,6 +180,7 @@ public class Cannon : MonoBehaviour
             if (_cannon.transform.position == _currentTarget)
             {
                 _isMoving = false;
+                MusicSoundManagement.Instance.StopSFXLoop(MusicSoundManagement.AUDIOTYPE.MAGNET_MOVE);
             }
         }
         if (_shootNextFrame && !_isMoving)

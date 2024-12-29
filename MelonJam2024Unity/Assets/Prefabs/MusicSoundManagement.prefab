@@ -175,7 +175,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69e9cd3e7ebdb745aba8f7ecdd17f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxReferences: []
+  _sfxReferences:
+  - m_type: 1
+    m_audioClip: {fileID: 8300000, guid: 1a9ab1be01c41554bafbbbb5f9a0d5e0, type: 3}
+    m_volMultiplier: 1
+  - m_type: 2
+    m_audioClip: {fileID: 8300000, guid: 87a01f50ccf71704696b5a1b4a7f8b28, type: 3}
+    m_volMultiplier: 1
+  - m_type: 3
+    m_audioClip: {fileID: 8300000, guid: 66dc5a74fc153814b8cda58bb65a102c, type: 3}
+    m_volMultiplier: 1
+  - m_type: 9
+    m_audioClip: {fileID: 8300000, guid: 039c9705ba693fc4a884f2b8b7521be3, type: 3}
+    m_volMultiplier: 1
   _sfxSource: {fileID: 8066707242684609244}
   _upgradeMusic: {fileID: 0}
   _inGameMusic: {fileID: 0}

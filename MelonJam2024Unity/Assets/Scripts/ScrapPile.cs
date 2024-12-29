@@ -17,7 +17,7 @@ public class ScrapPile : MonoBehaviour
 
     public void DealDmg(int dmg)
     {
-
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.MINE_SCRAP);
         int remainingHP = HP - dmg;
 
         UiManager.DisplayDamageText(dmg.ToString(),transform.position, Color.white);

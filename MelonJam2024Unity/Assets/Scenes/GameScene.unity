@@ -511,6 +511,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scrap Table
       objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 410500035}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnInteractedWith
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ScrapTable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2011177262413586036, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -556,6 +580,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+--- !u!114 &410500035 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 527805414896339833, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+  m_PrefabInstance: {fileID: 410500034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d765b6cccd2948a46b24c15040b68254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &482166226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -757,6 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pileDimensions: {x: 4, y: 2}
   scrapSpawnAmount: 1
+  scrapCapacityMultiplier: 1
   pilePrefab: {fileID: 5763984831453577902, guid: 211fe5b8df2654d43bd806fdf53874d1, type: 3}
 --- !u!1001 &1109370890
 PrefabInstance:

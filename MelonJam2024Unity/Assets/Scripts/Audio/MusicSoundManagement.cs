@@ -12,6 +12,17 @@ public class MusicSoundManagement : MonoBehaviour
     public enum AUDIOTYPE
     {
         NONE = 0,
+        BUTTON_UP,
+        BUTTON_DOWN,
+        BUTTON_POLARITY,
+        SWITCH_POLARITY,
+        FOOT_STEP,
+        MINE_SCRAP,
+        PLACE_SCRAP,
+        MAGNET_MOVE,
+        MAGNET_SCRAP_ATTACH,
+        SCRAP_HIT,
+        LAND_MINE
     }
 
     [Serializable]
