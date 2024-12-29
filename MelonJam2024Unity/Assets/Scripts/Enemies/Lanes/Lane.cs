@@ -66,7 +66,7 @@ public class Lane : MonoBehaviour
                 TriggerLandMine(enemy);
                 return;
             }
-            
+
             Debug.LogWarning("Loose Condition");
             //LaneSystem.Instance.m_onLooseCondition.Invoke();
             LaneSystem.Instance.LoadUpgradeScene();
@@ -81,11 +81,21 @@ public class Lane : MonoBehaviour
 
     private void BulletHitEnemy(Bullet bullet, Enemy enemy)
     {
-        _activeBulletList.Remove(bullet);
-        Destroy(bullet.gameObject);
         enemy.m_health -= bullet.m_damage;
-        if (enemy.m_health <= 0)
+        if (enemy.m_health > 0)
         {
+            _activeBulletList.Remove(bullet);
+            Destroy(bullet.gameObject);
+        }
+        if (enemy.m_health < 0)
+        {
+            bullet.m_damage = Mathf.Abs(enemy.m_health);
+            KillEnemy(enemy);
+        }
+        else if (enemy.m_health == 0)
+        {
+            _activeBulletList.Remove(bullet);
+            Destroy(bullet.gameObject);
             KillEnemy(enemy);
         }
     }
