@@ -39,10 +39,9 @@ public class Lane : MonoBehaviour
         }
     }
 
-    public void SpawnEnemy(Enemy enemyPrefab, float slowDebuffMultiplierReduction)
+    public void SpawnEnemy(Enemy enemyPrefab)
     {
         Enemy newEnemy = Instantiate(enemyPrefab);
-        newEnemy.m_speedMultiplyer = 1f - slowDebuffMultiplierReduction;
         newEnemy.transform.position = m_startPoint.position;
         _activeEnemyList.Add(newEnemy);
     }
