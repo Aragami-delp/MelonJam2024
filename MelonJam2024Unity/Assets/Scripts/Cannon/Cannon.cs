@@ -4,8 +4,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MoveCannon : MonoBehaviour
+public class Cannon : MonoBehaviour
 {
+    public static Cannon Instance { get; private set; }
+
     [SerializeField] private float _moveSpeed = 4f;
     [SerializeField] private Transform _scrapPickupY;
     [SerializeField] private Transform _cannon;
@@ -13,15 +15,34 @@ public class MoveCannon : MonoBehaviour
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField, Tooltip("True for magnet turns on")] private UnityEvent<bool> _onSwitchPolarity;
 
-    [SerializeField] private int _maxScrapCapacity;
-    public int MaxScrapCapacity { get { return _maxScrapCapacity; } set { _maxScrapCapacity = value;  } }
-
     private List<float> _lanePositions = new();
     private bool _isMoving = false;
     private Vector3 _currentTarget = new();
     private List<Bullet> _holdingScrap = new();
     private bool _isAttracting = false;
     private bool _shootNextFrame = false;
+
+    #region Upgrade Targets
+    [Header("Upgrades")]
+    public int m_maxScrapCapacity = 1;
+    public bool m_autoReload = true;
+    #endregion
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        Instance = this;
+        //DontDestroyOnLoad(this);
+    }
+
+    private void OnDestroy()
+    {
+        Instance = null;
+    }
 
     /// <summary>
     /// -1 == Pickup; 
@@ -73,7 +94,6 @@ public class MoveCannon : MonoBehaviour
         if (_isAttracting)
         {
             _shootNextFrame = false;
-            //PickupScrap();
         }
         else
         {
@@ -92,13 +112,13 @@ public class MoveCannon : MonoBehaviour
 
     public void PickupScrap(List<Bullet> scrap = null)
     {
-        
+
         _holdingScrap = scrap;
-        _holdingScrap.ForEach(x => 
-            { 
-                x.transform.position = _scrapHoldPos.position; 
-                x.transform.SetParent(null); 
-                x.enabled = true; 
+        _holdingScrap.ForEach(x =>
+            {
+                x.transform.position = _scrapHoldPos.position;
+                x.transform.SetParent(null);
+                x.enabled = true;
             });
 
 
@@ -147,10 +167,15 @@ public class MoveCannon : MonoBehaviour
         {
             Shoot();
             _shootNextFrame = false;
+            if (m_autoReload)
+            {
+                _isAttracting = !_isAttracting;
+                MoveToScrap();
+            }
         }
         else if (!_isMoving && _isAttracting && _currentLane == -1 && _holdingScrap.Count == 0)
         {
-            PickupScrap(ScrapTable.Instance.TryGetScrap(MaxScrapCapacity));
+            PickupScrap(ScrapTable.Instance.TryGetScrap(m_maxScrapCapacity));
         }
     }
 }

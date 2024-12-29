@@ -85,6 +85,7 @@ public class Upgrade
         (self, isIngame) =>
         {
             if (!isIngame) { return; }
+            Cannon.Instance.m_autoReload = true;
         }
     );
 

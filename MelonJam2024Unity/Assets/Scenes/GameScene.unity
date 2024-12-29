@@ -1543,9 +1543,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9197043291036696663, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.02
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _initialSpawnDelay
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1603,6 +1603,10 @@ PrefabInstance:
     - target: {fileID: 6549256192649084012, guid: 80da2932236c48342bdd935924e916c2, type: 3}
       propertyPath: m_Name
       value: Cannon Rail
+      objectReference: {fileID: 0}
+    - target: {fileID: 6865002774154590078, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: m_maxScrapCapacity
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
