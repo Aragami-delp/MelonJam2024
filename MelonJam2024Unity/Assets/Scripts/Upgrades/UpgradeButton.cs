@@ -28,17 +28,18 @@ public class UpgradeButton : MonoBehaviour
     {
         UpgradeManager.RemoveDetailList();
     }
-
-    void Start()
+    private void Awake()
     {
-
-        if (beginningUpgrade) 
+        if (beginningUpgrade)
         {
             SetUpgrade(Upgrade.BeginningUpgrade);
             SetIcon(upgrade.Icon);
-            upgrade.ConnectToButton(this,false);
+            upgrade.ConnectToButton(this, false);
         }
+    }
 
+    void Start()
+    {
         GetComponent<Button>().enabled = upgrade.Unlocked;
         
         for (int i = 0; i < upgrade.Children.Length; i++)
@@ -105,8 +106,7 @@ public class UpgradeButton : MonoBehaviour
     }
 
     public void UnlockChildConnectors(Upgrade connection)
-    {
-        SetImageUnlocked();
+    { 
 
         for (int i = 0; i < transform.childCount; i++)
         {
