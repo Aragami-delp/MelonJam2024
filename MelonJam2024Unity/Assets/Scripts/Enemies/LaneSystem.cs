@@ -23,8 +23,8 @@ public class LaneSystem : MonoBehaviour
     [SerializeField, Tooltip("From top to bottom auto sorted")] public List<Lane> m_lanes = new();
     [SerializeField] private List<Enemy> _enemyPrefabList = new();
 
-    [SerializeField] public UnityEvent m_onLooseCondition;
-    [SerializeField] public UnityEvent<int> m_onEnemyDied;
+    //[SerializeField] public UnityEvent m_onLooseCondition;
+    //[SerializeField] public UnityEvent<int> m_onEnemyDied;
 
     private void Awake()
     {

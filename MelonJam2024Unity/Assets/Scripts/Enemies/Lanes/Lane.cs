@@ -77,7 +77,7 @@ public class Lane : MonoBehaviour
         {
             _activeEnemyList.Remove(enemy);
             //LaneSystem.Instance.m_onEnemyDied.Invoke(enemy.m_lootValue);
-            GameManager.Instance.Coins += enemy.m_lootValue;
+            if (GameManager.Instance) GameManager.Instance.Coins += enemy.m_lootValue;
             Destroy(enemy.gameObject); // TODO: Pooling
         }
     }
