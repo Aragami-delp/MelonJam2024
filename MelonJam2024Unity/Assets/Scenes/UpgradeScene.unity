@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 107004578}
   m_Layer: 5
   m_Name: UpgradeParent
-  m_TagString: Untagged
+  m_TagString: UpgradeParent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1190,6 +1190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ef63738da3fa5409c67681267a933b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeParent: {fileID: 107004578}
+  Details: {fileID: 4907465006836049516}
 --- !u!1 &2036141581
 GameObject:
   m_ObjectHideFlags: 0
