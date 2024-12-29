@@ -33,11 +33,9 @@ public class UpgradeManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        // init upgrades in UI 
-        LoadUpgrades(false);
-
         SceneManager.sceneLoaded += ChangedScene;
     }
+
 
     private void ChangedScene(Scene scene, LoadSceneMode mode)
     {
@@ -75,14 +73,14 @@ public class UpgradeManager : MonoBehaviour
     {
         if (!ingame) 
         {
-            Transform upgradeParent = GameObject.Find("UpgradeParent").transform;
+            Transform upgradeParent = UpgradeUiManager.Instance.UpgradeParent; 
             
             if (Upgrade.BeginningUpgrade.Level == 1) 
             {
                 Upgrade.BeginningUpgrade.UpgradeBought(false);
             }
 
-            Instance.detailsTransform = GameObject.Find("Details");
+            Instance.detailsTransform = UpgradeUiManager.Instance.Details.gameObject; 
 
             for (int i = 0; i < Upgrade.Upgrades.Length; i++)
             {

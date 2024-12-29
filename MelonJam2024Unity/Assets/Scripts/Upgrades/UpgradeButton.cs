@@ -35,6 +35,8 @@ public class UpgradeButton : MonoBehaviour
         if (beginningUpgrade) 
         {
             SetUpgrade(Upgrade.BeginningUpgrade);
+            SetIcon(upgrade.Icon);
+            upgrade.ConnectToButton(this,false);
         }
 
         GetComponent<Button>().enabled = upgrade.Unlocked;
@@ -68,6 +70,15 @@ public class UpgradeButton : MonoBehaviour
             Vector3 endPosition = targetPosition - direction * 0.9f;
             renderer.SetPosition(0, startPosition);
             renderer.SetPosition(1, endPosition);
+
+        }
+
+        if (beginningUpgrade) 
+        {
+            for (int i = 1; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
     }
 

@@ -13,7 +13,7 @@ public class Upgrade
             "Icon",
 
             0,
-            new string[] { "InitialScrapSize1", "AutoReload", "Turrets1", "mgntSpeed", "EnemySlow1" },
+            new string[] { "InitialScrapSize1", "Turrets1", "mgntSpeed", "EnemySlow1" },
             true,
             new Vector2(0, 0),
             1,
@@ -24,7 +24,12 @@ public class Upgrade
                     return;
                 }
 
-                GameObject.Find("UpgradeParent").SetActive(true);
+                UpgradeUiManager.Instance.UpgradeParent.gameObject.SetActive(true);
+
+                for (int i = 0; i < self.upgradeButton.transform.childCount; i++)
+                {
+                    self.upgradeButton.transform.GetChild(i).gameObject.SetActive(true);
+                }
 
             }
         );
@@ -168,7 +173,7 @@ public class Upgrade
         Apply = apply;
     }
 
-    public void ConnectToButton(UpgradeButton gameObject)
+    public void ConnectToButton(UpgradeButton gameObject, bool callChildren = true)
     {
         upgradeButton = gameObject;
 
@@ -182,6 +187,11 @@ public class Upgrade
                     Children[i] = Upgrades[upgradeIndex];
                 }
             }
+        }
+        
+        if (!callChildren) 
+        {
+            return;
         }
 
         for (int i = 0; i < Children.Length; i++)
@@ -222,15 +232,27 @@ public class Upgrade
 
     public void ParentUnlocked(Upgrade parent)
     {
+ 
         parents.Remove(parent);
 
         if (!activatedParents.Contains(parent))
         {
             activatedParents.Add(parent);
         }
+        try 
+        { 
+        
+            Debug.Log("my remaining parents are " + parents[0].IDName);
+        }
+        catch 
+        { 
+        
+        }
 
         if (parents.Count <= 0 && upgradeButton != null)
         {
+            Debug.Log("I was Unlocked by " + parent.IDName + " at Level " + parent.Level);
+            
             Unlocked = true;
             upgradeButton.GetComponent<Button>().enabled = true;
 
