@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 183272298276973193}
   - component: {fileID: 3396783110128386035}
   - component: {fileID: 4354702839518118368}
+  - component: {fileID: -1291648509727162241}
   m_Layer: 0
   m_Name: TestScrap
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7645833290607551051, guid: d7ba01db665389e4e90703b8db739010, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,3 +102,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delayAmount: 0.03
+--- !u!114 &-1291648509727162241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7605941749003443997}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b424f2b821f1ed479e1e6aa2b886ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tilesSpeed: 1
+  m_advancement: 0
+  m_damage: 1
+  _rotateSpeed: 100
+  _maxFlyHight: 1
+  _flyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.871702
+      outSlope: 2
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.04629625
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: -0.1
+      inSlope: -2.2
+      outSlope: -4.6695986
+      tangentMode: 5
+      weightedMode: 0
+      inWeight: 0.04444647
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 1
+    m_RotationOrder: 4

@@ -52,7 +52,7 @@ public class ScrapPile : MonoBehaviour
     private void DropLoot()
     {
         GameObject newLoot = Instantiate(lootPool[Random.Range(0, lootPool.Length)]);
-        PlayerController.Player.GiveLoot(newLoot.transform);
+        PlayerController.Player.GiveLoot(newLoot.GetComponent<Bullet>());
         Debug.Log("Dropped scrap");
     }
 

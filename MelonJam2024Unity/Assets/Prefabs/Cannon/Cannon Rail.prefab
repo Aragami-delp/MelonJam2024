@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3725717b4a3d5a3469b992e9f4cee74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 7.5
   _scrapPickupY: {fileID: 1786014209175009653}
   _cannon: {fileID: 8175260915485025718}
   _scrapHoldPos: {fileID: 6403933603403598356}
@@ -116,6 +116,7 @@ MonoBehaviour:
   _onSwitchPolarity:
     m_PersistentCalls:
       m_Calls: []
+  _maxScrapCapacity: 1
 --- !u!1 &6722257280838764844
 GameObject:
   m_ObjectHideFlags: 0

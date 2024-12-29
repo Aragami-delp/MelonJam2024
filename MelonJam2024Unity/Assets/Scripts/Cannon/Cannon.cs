@@ -12,6 +12,10 @@ public class MoveCannon : MonoBehaviour
     [SerializeField] private Transform _scrapHoldPos;
     [SerializeField] private Bullet _bulletPrefab;
     [SerializeField, Tooltip("True for magnet turns on")] private UnityEvent<bool> _onSwitchPolarity;
+
+    [SerializeField] private int _maxScrapCapacity;
+    public int MaxScrapCapacity { get { return _maxScrapCapacity; } set { _maxScrapCapacity = value;  } }
+
     private List<float> _lanePositions = new();
     private bool _isMoving = false;
     private Vector3 _currentTarget = new();
@@ -88,26 +92,16 @@ public class MoveCannon : MonoBehaviour
 
     public void PickupScrap(List<Bullet> scrap = null)
     {
-        //TODO: Pickup for real
-        if (_currentLane != -1 || _isMoving) // TODO: Pickup once arrived and continue to pick up until left (or maybe just pickup on leave?)
-        {
-            return;
-        }
-        if (scrap is null || scrap.Count == 0)
-        {
-            _holdingScrap = new List<Bullet>
-            {
-                Instantiate(_bulletPrefab),
-                Instantiate(_bulletPrefab),
-                Instantiate(_bulletPrefab)
-            };
-            _holdingScrap.ForEach(x => x.transform.position = _scrapHoldPos.position);
-        }
-        else
-        {
-            _holdingScrap = scrap;
-        }
-        //Bullet newBullet = Instantiate(_bulletPrefab);
+        
+        _holdingScrap = scrap;
+        _holdingScrap.ForEach(x => 
+            { 
+                x.transform.position = _scrapHoldPos.position; 
+                x.transform.SetParent(null); 
+                x.enabled = true; 
+            });
+
+
     }
 
     [ContextMenu("Shoot Test")]
@@ -156,7 +150,7 @@ public class MoveCannon : MonoBehaviour
         }
         else if (!_isMoving && _isAttracting && _currentLane == -1 && _holdingScrap.Count == 0)
         {
-            PickupScrap();
+            PickupScrap(ScrapTable.Instance.TryGetScrap(MaxScrapCapacity));
         }
     }
 }
