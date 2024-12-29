@@ -13,7 +13,7 @@ public class Upgrade
             "Icon",
 
             0,
-            new string[] { "InitialScrapSize1", "Turrets1", "mgntSpeed", "EnemySlow1" },
+            new string[] { "InitialScrapSize1", "Turrets1", "mgntSpeed", "EnemySlow1", "LandMine1" },
             true,
             new Vector2(0, 0),
             1,
@@ -134,6 +134,23 @@ public class Upgrade
                 if (!isIngame) { return; }
 
                 Cannon.Instance._moveSpeed++;
+            }
+        ),
+        new Upgrade(
+            "LandMine1",
+            "Last Resort",
+            "Desc",
+            "upg-lane-mine-1",
+
+            30,
+            new string[] { },
+            true,
+            new Vector2(0, -1),
+            1,
+            (self, isIngame) =>
+            {
+                if (!isIngame) { return; }
+                LaneSystem.Instance.LandMinesActive = true;
             }
         ),
     };
