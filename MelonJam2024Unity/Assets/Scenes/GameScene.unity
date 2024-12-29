@@ -1604,10 +1604,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cannon Rail
       objectReference: {fileID: 0}
-    - target: {fileID: 6865002774154590078, guid: 80da2932236c48342bdd935924e916c2, type: 3}
-      propertyPath: m_maxScrapCapacity
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
