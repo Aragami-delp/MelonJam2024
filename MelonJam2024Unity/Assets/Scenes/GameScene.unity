@@ -1630,6 +1630,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6403933603403598356, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403933603403598356, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 6549256192649084012, guid: 80da2932236c48342bdd935924e916c2, type: 3}
       propertyPath: m_Name
       value: Cannon Rail
