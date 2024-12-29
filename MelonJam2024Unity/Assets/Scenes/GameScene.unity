@@ -1296,6 +1296,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1035353434278641439, guid: c55ea855407af01439d78871ba91a35e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5813024481468398887, guid: c55ea855407af01439d78871ba91a35e, type: 3}
       propertyPath: m_Name
       value: InGameCanvas
