@@ -41,7 +41,6 @@ public class UpgradeManager : MonoBehaviour
     {
         UnloadUpgrades();
         LoadUpgrades(scene.name != "UpgradeScene");
-        Debug.Log("Loaded Upgrades");
     }
 
 
@@ -75,10 +74,6 @@ public class UpgradeManager : MonoBehaviour
         {
             Transform upgradeParent = UpgradeUiManager.Instance.UpgradeParent; 
             
-            if (Upgrade.BeginningUpgrade.Level == 1) 
-            {
-                Upgrade.BeginningUpgrade.UpgradeBought(false);
-            }
 
             Instance.detailsTransform = UpgradeUiManager.Instance.Details.gameObject; 
 
@@ -94,12 +89,18 @@ public class UpgradeManager : MonoBehaviour
 
                 upgButton.SetUpgrade(Upgrade.Upgrades[i]);
                 upgButton.SetIcon(Upgrade.Upgrades[i].Icon);
-
+                upgButton.InitConnections();
             }
         }
 
         foreach (var upgrade in BoughtUpgraders.ToList())
         {
+            if (upgrade.Name == Upgrade.BeginningUpgrade.IDName) 
+            {
+                Upgrade.BeginningUpgrade.UpgradeBought(ingame);
+                continue;
+            }
+
             for (int i = 0; i < Upgrade.Upgrades.Length; i++)
             {
                 if (Upgrade.Upgrades[i].IDName == upgrade.Name)
@@ -115,8 +116,16 @@ public class UpgradeManager : MonoBehaviour
 
     public static void UnloadUpgrades()
     {
+
         foreach (var upgrade in BoughtUpgraders.ToList())
         {
+            if (upgrade.Name == Upgrade.BeginningUpgrade.IDName)
+            {
+                Upgrade.BeginningUpgrade.Level = 0;
+                Upgrade.BeginningUpgrade.Unlocked = Upgrade.BeginningUpgrade.InstantUnlocked;
+                continue;
+            }
+
             for (int i = 0; i < Upgrade.Upgrades.Length; i++)
             {
                 if (Upgrade.Upgrades[i].IDName == upgrade.Name)
@@ -128,13 +137,14 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    public static void AddUpgrade(string name) 
-    {
+    public static void AddUpgrade(string name, int increment = 1)
+    { 
+
         for (int i = 0; i < BoughtUpgraders.Count; i++)
         {
             if(BoughtUpgraders[i].Name == name) 
             {
-                UpgradeNameValuePair pair = new UpgradeNameValuePair(name , BoughtUpgraders[i].Value + 1);
+                UpgradeNameValuePair pair = new UpgradeNameValuePair(name , BoughtUpgraders[i].Value + increment);
                 BoughtUpgraders[i] = pair;
                 return;
             }

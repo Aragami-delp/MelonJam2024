@@ -35,10 +35,11 @@ public class UpgradeButton : MonoBehaviour
             SetUpgrade(Upgrade.BeginningUpgrade);
             SetIcon(upgrade.Icon);
             upgrade.ConnectToButton(this, false);
+            InitConnections();
         }
     }
 
-    void Start()
+    public void InitConnections()
     {
         GetComponent<Button>().enabled = upgrade.Unlocked;
         
@@ -74,7 +75,7 @@ public class UpgradeButton : MonoBehaviour
 
         }
 
-        if (beginningUpgrade) 
+        if (beginningUpgrade && Upgrade.BeginningUpgrade.Level == 0) 
         {
             for (int i = 1; i < transform.childCount; i++)
             {
@@ -96,7 +97,7 @@ public class UpgradeButton : MonoBehaviour
             return;
         }
 
-        upgrade.UpgradeBought(false);
+        upgrade.UpgradeBought(false, true);
 
         if (UiBought)
         {

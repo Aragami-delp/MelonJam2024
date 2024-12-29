@@ -23,7 +23,7 @@ public class Upgrade
                 {
                     return;
                 }
-
+                
                 UpgradeUiManager.Instance.UpgradeParent.gameObject.SetActive(true);
 
                 for (int i = 0; i < self.upgradeButton.transform.childCount; i++)
@@ -223,16 +223,20 @@ public class Upgrade
         parents.Add(parent);
     }
 
-    public void UpgradeBought(bool ingame)
+    public void UpgradeBought(bool ingame, bool buttonBought = false)
     {
         Level++;
 
         // add as unlocked or set new level to manager
-        UpgradeManager.AddUpgrade(IDName);
 
+        if (buttonBought) 
+        { 
+            UpgradeManager.AddUpgrade(IDName);
+        }
 
         if (!ingame)
         {
+            
             upgradeButton.SetImageUnlocked();
             ResolveUnlockes();
         }
@@ -273,7 +277,7 @@ public class Upgrade
 
     public void ActivateConnection(Upgrade upgrade)
     {
-        upgradeButton.GetComponent<UpgradeButton>().UnlockChildConnectors(upgrade);
+        upgradeButton.UnlockChildConnectors(upgrade);
     }
 
     public void DefaultPriceIncrease(float increment = 1.2f)
