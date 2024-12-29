@@ -58,7 +58,7 @@ public class Lane : MonoBehaviour
         {
             Debug.LogWarning("Loose Condition");
             //LaneSystem.Instance.m_onLooseCondition.Invoke();
-            GameManager.LoadScene(GameManager.GAMESCENE.UPGRADE);
+            LaneSystem.Instance.LoadUpgradeScene();
         }
     }
 
