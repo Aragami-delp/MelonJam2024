@@ -10,7 +10,16 @@ public class UiManager : MonoBehaviour
     private Transform WorldCanvas, TextPrefab, TutorialBoxPrefab;
 
     private int tutorialTextProgress;
-    GameObject lastTutorialBoy; 
+    GameObject lastTutorialBoy;
+
+    private void Awake()
+    {
+        if (GameManager.Instance == null)
+        {
+            GameManager.LoadScene(GameManager.GAMESCENE.UPGRADE);
+        }
+    }
+
     private void Start()
     {
         if (!GameManager.Instance.TutorialPlayed) 

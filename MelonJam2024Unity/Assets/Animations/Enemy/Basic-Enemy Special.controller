@@ -6,7 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Basic-Enemy
+  m_Name: Basic-Enemy Special
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -33,7 +33,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 6439729499079154217}
-    m_Position: {x: 58.666565, y: 443.29944, z: 0}
+    m_Position: {x: 10, y: 210, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -64,7 +64,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f29a97a7d5301c941950c6d4dc41d25b, type: 2}
+  m_Motion: {fileID: 7400000, guid: fd334160240812d4dbb8ad943b8a41ef, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

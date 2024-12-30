@@ -78,14 +78,17 @@ MonoBehaviour:
     m_audioClip: {fileID: 8300000, guid: 9df1fb5c150a49a09c5e75188578b8c7, type: 3}
     m_volMultiplier: 0.2
   - m_type: 11
-    m_audioClip: {fileID: 8300000, guid: a3deaf5347341dd4285d083966da52a6, type: 3}
+    m_audioClip: {fileID: 8300000, guid: 445e6172d4de4133be2f67cc40421dde, type: 3}
     m_volMultiplier: 0.5
+  - m_type: 12
+    m_audioClip: {fileID: 8300000, guid: 1205f9e407fe00843be0dc131abdad6c, type: 3}
+    m_volMultiplier: 0.2
   _loopsParent: {fileID: 4637043522653043704}
   _loopDummy: {fileID: 7648868894188204507, guid: 2c9327962884b424496f7d5eb7551045, type: 3}
   _inGameMusic: {fileID: 8300000, guid: 41705dc939c1b0e43adb9c1eedfe53f9, type: 3}
   _musicSource: {fileID: 2451680641212574410}
   _volume: 1
-  _musicvolume: 1
+  _musicvolume: 0.2
   _updateVolume: 0
 --- !u!1 &6274447575145371743
 GameObject:
