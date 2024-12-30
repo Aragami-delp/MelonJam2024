@@ -724,7 +724,11 @@ MonoBehaviour:
   _upgradeScene: 0
   _minSpawnDelay: 5
   _maxSpawnDelay: 10
-  _initialSpawnDelay: 5
+  _initialSpawnDelay: 2.5
+  _spawnDelayReduction: 0.95
+  _spawnDelayReductionInterval: 5
+  _reductionMin: 1
+  _reductionMax: 3
   m_onLaneSprite: {fileID: 6751513010459366182, guid: 8c0595d98bb6b254fa2bc586464b9522, type: 3}
   m_lanes:
   - {fileID: 6156791491943027733}
@@ -733,14 +737,16 @@ MonoBehaviour:
   - {fileID: 7028697599347465294}
   - {fileID: 5338900097228087136}
   _enemyPrefabList:
-  - m_spawnProbability: 10
+  - m_spawnProbability: 15
     m_enemyPrefab: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+  - m_spawnProbability: 8
+    m_enemyPrefab: {fileID: 2581710555921827470, guid: ed8a6137c4a421d4e926f6d9593d596e, type: 3}
+  - m_spawnProbability: 5
+    m_enemyPrefab: {fileID: 2581710555921827470, guid: 00d4fd2c7cce9b24b809b264f76ad64b, type: 3}
   - m_spawnProbability: 2
-    m_enemyPrefab: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
-  - m_spawnProbability: 2
-    m_enemyPrefab: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+    m_enemyPrefab: {fileID: 2581710555921827470, guid: dc42f13bb489dd348923c81f0ac740e0, type: 3}
   - m_spawnProbability: 1
-    m_enemyPrefab: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+    m_enemyPrefab: {fileID: 2581710555921827470, guid: 5787bedbe002142458d233e46ccab6db, type: 3}
   m_landMinesActive: 0
   _slowUpgradeMultiplierReduction: 0.1
 --- !u!1 &4077142356690386858

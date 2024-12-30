@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ac731a608c8f0d94c83448497ba85a16
+guid: a444ca147b885934f80c916ba271baf9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2176767274650181578
-    second: Car_Icon_Upgrade_0
+      213: 5212520958350626085
+    second: upg-mgnt-build_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Car_Icon_Upgrade_0
+      name: upg-mgnt-build_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 630e7cb52b19ac1e0800000000000000
-      internalID: -2176767274650181578
+      spriteID: 52d84cac138965840800000000000000
+      internalID: 5212520958350626085
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Car_Icon_Upgrade_0: -2176767274650181578
+      upg-mgnt-build_0: 5212520958350626085
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

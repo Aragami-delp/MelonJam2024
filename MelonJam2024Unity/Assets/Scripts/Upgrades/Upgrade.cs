@@ -10,7 +10,7 @@ public class Upgrade
             "NewBeginning",
             "New Beginning",
             "Lets build a Cannon",
-            "Icon",
+            "upg-mgnt-build",
 
             0,
             new string[] { "mgntDamage" , "EnemySlow1", "PlayerSpeed1", "InitialScrapSize1"},
