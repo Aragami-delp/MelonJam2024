@@ -374,12 +374,15 @@ public class Upgrade
     public void ClearParents() 
     {
         parents.Clear();
-        Children = new Upgrade[promissedChildren.Length];
+        activatedParents.Clear();
     }
 
     public void SetupParent(Upgrade parent)
     {
-        parents.Add(parent);
+        if (!parents.Contains(parent)) 
+        { 
+            parents.Add(parent);
+        }
     }
 
     public void UpgradeBought(bool ingame, bool buttonBought = false)

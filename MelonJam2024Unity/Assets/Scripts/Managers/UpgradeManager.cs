@@ -126,6 +126,7 @@ public class UpgradeManager : MonoBehaviour
             {
                 Upgrade.BeginningUpgrade.Level = 0;
                 Upgrade.BeginningUpgrade.Unlocked = Upgrade.BeginningUpgrade.InstantUnlocked;
+                Upgrade.BeginningUpgrade.ClearParents();
                 continue;
             }
 
