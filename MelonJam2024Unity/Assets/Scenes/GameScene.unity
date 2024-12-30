@@ -16328,6 +16328,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1571736533074037366, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2228163243720393818, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600849997859803076, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6403933603403598356, guid: 80da2932236c48342bdd935924e916c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -16339,6 +16351,30 @@ PrefabInstance:
     - target: {fileID: 6549256192649084012, guid: 80da2932236c48342bdd935924e916c2, type: 3}
       propertyPath: m_Name
       value: Cannon Rail
+      objectReference: {fileID: 0}
+    - target: {fileID: 6865002774154590078, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: pullParticles
+      value: 
+      objectReference: {fileID: 6741956313797972089}
+    - target: {fileID: 6865002774154590078, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: pushParticles
+      value: 
+      objectReference: {fileID: 6741956313797972087}
+    - target: {fileID: 6865002774154590078, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: pullParticlesWeak
+      value: 
+      objectReference: {fileID: 6741956313797972088}
+    - target: {fileID: 7679992404511381542, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942186249288863292, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013069564581702504, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16365,6 +16401,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3725717b4a3d5a3469b992e9f4cee74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!198 &6741956313797972087 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7679992404511381542, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+  m_PrefabInstance: {fileID: 6741956313797972085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6741956313797972088 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2600849997859803076, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+  m_PrefabInstance: {fileID: 6741956313797972085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6741956313797972089 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9013069564581702504, guid: 80da2932236c48342bdd935924e916c2, type: 3}
+  m_PrefabInstance: {fileID: 6741956313797972085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

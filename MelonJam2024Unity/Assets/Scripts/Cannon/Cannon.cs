@@ -119,11 +119,21 @@ public class Cannon : MonoBehaviour
         
         if (_isAttracting)
         {
+            if (_isHoldingScrap) 
+            {
+                pullParticlesWeak.Play();
+            }
+            else 
+            { 
+                pullParticles.Play();
+            }
+
             _shootNextFrame = false;
         }
         else
         {
-            pushParticles.Play();
+            pullParticles.Stop();
+            pullParticles.Clear();
 
             _shootNextFrame = true;
         }
@@ -133,6 +143,13 @@ public class Cannon : MonoBehaviour
     {
         if (_currentLane != -1)
         {
+            pullParticlesWeak.Stop();
+            pullParticlesWeak.Clear();
+            pullParticles.Stop();
+            pullParticles.Clear();
+
+            pushParticles.Play();
+
             GetCurrentLane.Shoot(_holdingScrap);
             _holdingScrap.Clear();
         }
@@ -142,6 +159,10 @@ public class Cannon : MonoBehaviour
     {
         if (scrap.Count > 0)
         {
+            pullParticles.Stop();
+            pullParticles.Clear();
+            pullParticlesWeak.Play();
+
             MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.MAGNET_SCRAP_ATTACH);
         }
         _holdingScrap = scrap;
@@ -209,7 +230,6 @@ public class Cannon : MonoBehaviour
         else if (!_isMoving && _isAttracting && _currentLane == -1 && _holdingScrap.Count == 0)
         {
             PickupScrap(ScrapTable.Instance.TryGetScrap(m_maxScrapCapacity));
-            pullParticles.Play();
         }
     }
 }
