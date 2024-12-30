@@ -16,6 +16,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 354c9f1301a6297429ea3e8cabe06ebc, type: 2}
+    - target: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+      propertyPath: m_health
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+      propertyPath: m_lootValue
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+      propertyPath: _customSpeedMultiplier
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5799056204125705616, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

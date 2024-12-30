@@ -117,12 +117,14 @@ public class LaneSystem : MonoBehaviour
         m_lanes.Where((lane, index) => index != newlyActiveLane).ToList().ForEach(x => x.SetLaneIndicator(false));
     }
 
+    [ContextMenu("Spawn random enemy")]
     public void SpawnEnemy(Enemy enemyPrefab = null, Lane lane = null)
     {
         enemyPrefab ??= GetRandomEnemy();
-        lane ??= m_lanes[UnityEngine.Random.Range(0, m_lanes.Count)];
+        int newLane = UnityEngine.Random.Range(0, m_lanes.Count);
+        lane ??= m_lanes[newLane];
 
-        lane.SpawnEnemy(enemyPrefab, m_slowUpgradeMultiplierReduction); 
+        lane.SpawnEnemy(enemyPrefab, m_slowUpgradeMultiplierReduction, newLane + 10); 
     }
 
     private Enemy GetRandomEnemy()
