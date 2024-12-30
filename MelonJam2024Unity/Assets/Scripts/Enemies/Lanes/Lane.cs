@@ -18,6 +18,9 @@ public class Lane : MonoBehaviour
 
     private bool landMineExploded = false;
 
+    [SerializeField]
+    private ParticleSystem landMineParticles;
+
     private void Start()
     {
         //_distance = Vector2.Distance(_startPoint.position, _endPoint.position);
@@ -112,6 +115,7 @@ public class Lane : MonoBehaviour
 
     private void TriggerLandMine(Enemy enemy)
     {
+        landMineParticles.Play();
         landMineExploded = true;
         _landMineIndicator.enabled = false;
         KillEnemy(enemy);
