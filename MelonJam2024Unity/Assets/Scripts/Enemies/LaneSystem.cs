@@ -7,6 +7,13 @@ using UnityEngine.Events;
 [DefaultExecutionOrder(-50)]
 public class LaneSystem : MonoBehaviour
 {
+    [Serializable]
+    public struct EnemyPrefabProbabilities
+    {
+        public float m_spawnProbability;
+        public Enemy m_enemyPrefab;
+    }
+
     public static LaneSystem Instance { get; private set; }
 
     [SerializeField, Tooltip("For debugging"), Header("Debugging")] public bool _spawnEnemies = true;
@@ -16,8 +23,16 @@ public class LaneSystem : MonoBehaviour
     [SerializeField, Range(1f, 20f)] private float _minSpawnDelay = 5f;
     [SerializeField, Range(1f, 20f)] private float _maxSpawnDelay = 10f;
     [SerializeField, Range(1f, 20f)] private float _initialSpawnDelay = 10f;
+    
+    [Header("Difficultly")]
+    [SerializeField, Range(0f, 1f)] private float _spawnDelayReduction = 0.95f;
+    [SerializeField, Range(0f, 20f)] private float _spawnDelayReductionInterval = 5f;
+    
+    [SerializeField, Range(0f, 20f)] private float _reductionMin = 1f;
+    [SerializeField, Range(0f, 20f)] private float _reductionMax = 3f;
     private float _currentSpawnDelay = 0.75f;
     private float _timeSinceLastSpawn = 0f;
+    private float _timeSinceReduction = 0f;
 
     [SerializeField] public Sprite m_onLaneSprite;
 
@@ -25,7 +40,7 @@ public class LaneSystem : MonoBehaviour
     /// Lanes from top to bottom
     /// </summary>
     [SerializeField, Tooltip("From top to bottom auto sorted")] public List<Lane> m_lanes = new();
-    [SerializeField] private List<Enemy> _enemyPrefabList = new();
+    [SerializeField] private List<EnemyPrefabProbabilities> _enemyPrefabList = new();
 
     //[SerializeField] public UnityEvent m_onLooseCondition;
     //[SerializeField] public UnityEvent<int> m_onEnemyDied;
@@ -75,6 +90,7 @@ public class LaneSystem : MonoBehaviour
         if (!_spawnEnemies) { return; }
 
         _timeSinceLastSpawn += Time.deltaTime;
+        _timeSinceReduction += Time.deltaTime;
 
         if (_timeSinceLastSpawn > _currentSpawnDelay)
         {
@@ -82,6 +98,13 @@ public class LaneSystem : MonoBehaviour
             _currentSpawnDelay = UnityEngine.Random.Range(_minSpawnDelay, _maxSpawnDelay);
 
             SpawnEnemy();
+        }
+        
+        if (_timeSinceReduction > _spawnDelayReductionInterval)
+        {
+            _timeSinceReduction = 0f;
+            _minSpawnDelay = Math.Max(_reductionMin, _minSpawnDelay * _spawnDelayReduction);
+            _maxSpawnDelay = Math.Max(_reductionMax, _maxSpawnDelay * _spawnDelayReduction);
         }
     }
 
@@ -96,9 +119,24 @@ public class LaneSystem : MonoBehaviour
 
     public void SpawnEnemy(Enemy enemyPrefab = null, Lane lane = null)
     {
-        enemyPrefab ??= _enemyPrefabList[UnityEngine.Random.Range(0, _enemyPrefabList.Count)];
+        enemyPrefab ??= GetRandomEnemy();
         lane ??= m_lanes[UnityEngine.Random.Range(0, m_lanes.Count)];
 
         lane.SpawnEnemy(enemyPrefab, m_slowUpgradeMultiplierReduction); 
+    }
+
+    private Enemy GetRandomEnemy()
+    {
+        float randomNumber = UnityEngine.Random.Range(0, _enemyPrefabList.Sum(probability => probability.m_spawnProbability));
+        float cumulative = 0f;
+        foreach (EnemyPrefabProbabilities epp in _enemyPrefabList)
+        {
+            cumulative += epp.m_spawnProbability;
+            if (randomNumber <= cumulative)
+            {
+                return epp.m_enemyPrefab;
+            }
+        }
+        return _enemyPrefabList[0].m_enemyPrefab;
     }
 }

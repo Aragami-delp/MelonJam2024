@@ -511,6 +511,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scrap Table
       objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 410500035}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnInteractedWith
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ScrapTable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320852641087771386, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+      propertyPath: OnTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2011177262413586036, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -556,6 +580,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+--- !u!114 &410500035 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 527805414896339833, guid: 01563df09577c6c4d87bd92c6a7bb714, type: 3}
+  m_PrefabInstance: {fileID: 410500034}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d765b6cccd2948a46b24c15040b68254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &482166226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1323,6 +1358,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 341922042}
     m_Modifications:
+    - target: {fileID: 4930199928914608941, guid: 89fde4fbdbe8a454a962710642c45703, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1325595595324372504, guid: 3cee6c9da00e2ef418d2124c291339ea, type: 3}
     - target: {fileID: 5537689303873676514, guid: 89fde4fbdbe8a454a962710642c45703, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1603,6 +1642,42 @@ PrefabInstance:
     - target: {fileID: 7167213032777629497, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _enemyPrefabList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _enemyPrefabList.Array.data[0].m_enemyPrefab
+      value: 
+      objectReference: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _enemyPrefabList.Array.data[1].m_enemyPrefab
+      value: 
+      objectReference: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _enemyPrefabList.Array.data[2].m_enemyPrefab
+      value: 
+      objectReference: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _enemyPrefabList.Array.data[3].m_enemyPrefab
+      value: 
+      objectReference: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _enemyPrefabList.Array.data[0].m_spawnProbability
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _enemyPrefabList.Array.data[1].m_spawnProbability
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _enemyPrefabList.Array.data[2].m_spawnProbability
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
+      propertyPath: _enemyPrefabList.Array.data[3].m_spawnProbability
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

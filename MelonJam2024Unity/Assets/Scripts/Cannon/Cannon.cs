@@ -12,6 +12,7 @@ public class Cannon : MonoBehaviour
     [SerializeField] private Transform _cannon;
     [SerializeField] private Transform _scrapHoldPos;
     [SerializeField] private Bullet _bulletPrefab;
+    [SerializeField] private int _startingDamage;
     [SerializeField, Tooltip("True for magnet turns on")] private UnityEvent<bool> _onSwitchPolarity;
 
     private List<float> _lanePositions = new();
@@ -26,14 +27,14 @@ public class Cannon : MonoBehaviour
     public int m_maxScrapCapacity = 1;
     public bool m_autoReload = true;
     public float _moveSpeed = 4f;
-    private int _cannonDamage = 1;
+    private int _cannonUpgradeDamage = 0;
     /// <summary>
     /// Default Value is 1
     /// </summary>
     public int m_cannonDamage
     {
-        get { return _cannonDamage; }
-        set { _cannonDamage = 1 - Mathf.Clamp(value, 1, 1000); }
+        get { return _cannonUpgradeDamage; }
+        set { _cannonUpgradeDamage = Mathf.Clamp(value, 1, 1000); }
     }
     #endregion
 
@@ -79,18 +80,21 @@ public class Cannon : MonoBehaviour
         _isMoving = true;
 
         LaneSystem.Instance.UpdateLaneIndicator(_currentLane);
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.MAGNET_MOVE);
     }
 
     // Top to bottom. Highest lane is 0
     [ContextMenu("Move Lane Down")]
     public void MoveLaneDown()
     {
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.BUTTON_DOWN);
         MoveToLane(_currentLane + 1);
     }
 
     [ContextMenu("Move Lane Up")]
     public void MoveLaneUp()
     {
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.BUTTON_UP);
         MoveToLane(_currentLane - 1);
     }
 
@@ -98,6 +102,8 @@ public class Cannon : MonoBehaviour
 
     public void SwitchPolarity()
     {
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.SWITCH_POLARITY);
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.BUTTON_POLARITY);
         _isAttracting = !_isAttracting;
         _onSwitchPolarity?.Invoke(_isAttracting);
         if (_isAttracting)
@@ -121,11 +127,14 @@ public class Cannon : MonoBehaviour
 
     public void PickupScrap(List<Bullet> scrap = null)
     {
-
+        if (scrap.Count > 0)
+        {
+            MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.MAGNET_SCRAP_ATTACH);
+        }
         _holdingScrap = scrap;
         _holdingScrap.ForEach(bullet =>
             {
-                bullet.m_damage = m_cannonDamage;
+                bullet.m_damage = _startingDamage + m_cannonDamage;
                 bullet.transform.position = _scrapHoldPos.position;
                 bullet.transform.SetParent(null);
                 bullet.enabled = true;
@@ -171,6 +180,7 @@ public class Cannon : MonoBehaviour
             if (_cannon.transform.position == _currentTarget)
             {
                 _isMoving = false;
+                MusicSoundManagement.Instance.StopSFXLoop(MusicSoundManagement.AUDIOTYPE.MAGNET_MOVE);
             }
         }
         if (_shootNextFrame && !_isMoving)

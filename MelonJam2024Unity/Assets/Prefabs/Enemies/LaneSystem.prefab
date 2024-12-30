@@ -720,9 +720,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea6a41434ed3c44e8534cfe6e99e16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnEnemies: 1
+  _upgradeScene: 0
   _minSpawnDelay: 5
   _maxSpawnDelay: 10
-  _initialSpawnDelay: 1
+  _initialSpawnDelay: 5
   m_onLaneSprite: {fileID: 6751513010459366182, guid: 8c0595d98bb6b254fa2bc586464b9522, type: 3}
   m_lanes:
   - {fileID: 6156791491943027733}
@@ -731,9 +733,16 @@ MonoBehaviour:
   - {fileID: 7028697599347465294}
   - {fileID: 5338900097228087136}
   _enemyPrefabList:
-  - {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
-  _upgradeScene: 0
-  LandMinesActive: 0
+  - m_spawnProbability: 10
+    m_enemyPrefab: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+  - m_spawnProbability: 2
+    m_enemyPrefab: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+  - m_spawnProbability: 2
+    m_enemyPrefab: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+  - m_spawnProbability: 1
+    m_enemyPrefab: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
+  m_landMinesActive: 0
+  _slowUpgradeMultiplierReduction: 0.1
 --- !u!1 &4077142356690386858
 GameObject:
   m_ObjectHideFlags: 0

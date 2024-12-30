@@ -29,6 +29,7 @@ public class ScrapTable : MonoBehaviour
                 return;
             }
 
+            MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.PLACE_SCRAP);
             TryAddScrap(player.TryGetScrap(MaxCapacity - Scrap.Count));
         }
 
