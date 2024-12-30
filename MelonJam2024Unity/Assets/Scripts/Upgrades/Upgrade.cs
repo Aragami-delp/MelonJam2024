@@ -23,7 +23,13 @@ public class Upgrade
                 {
                     return;
                 }
-                
+
+                if (!GameManager.Instance.TutorialPlayed)
+                {
+                    UpgradeUiManager.Instance.StartGame();
+                    return;
+                }
+
                 UpgradeUiManager.Instance.UpgradeParent.gameObject.SetActive(true);
 
                 for (int i = 0; i < self.upgradeButton.transform.childCount; i++)

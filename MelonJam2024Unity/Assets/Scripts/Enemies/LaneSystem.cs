@@ -9,7 +9,7 @@ public class LaneSystem : MonoBehaviour
 {
     public static LaneSystem Instance { get; private set; }
 
-    [SerializeField, Tooltip("For debugging"), Header("Debugging")] private bool _spawnEnemies = true;
+    [SerializeField, Tooltip("For debugging"), Header("Debugging")] public bool _spawnEnemies = true;
     [SerializeField, Tooltip("Scene to load when enemy reaches left side")] private GameManager.GAMESCENE _upgradeScene = GameManager.GAMESCENE.UPGRADE;
 
     [Header("Main")]

@@ -7,12 +7,21 @@ public class UpgradeUiManager : MonoBehaviour
     public static UpgradeUiManager Instance; 
 
     public Transform UpgradeParent;
-    public Transform Details; 
+    public Transform Details;
+    public GameObject PlayGameButton; 
     
 
     private void Awake()
     {
-        Instance = this; 
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        if (!GameManager.Instance.TutorialPlayed)
+        {
+            PlayGameButton.SetActive(false);
+        }
     }
 
     public void StartGame() 
