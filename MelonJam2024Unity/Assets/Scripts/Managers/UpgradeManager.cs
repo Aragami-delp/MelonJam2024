@@ -39,8 +39,10 @@ public class UpgradeManager : MonoBehaviour
 
     private void ChangedScene(Scene scene, LoadSceneMode mode)
     {
+        Debug.LogWarning("Now in scene " + scene.name);
         UnloadUpgrades();
         LoadUpgrades(scene.name != "UpgradeScene");
+        Debug.Log("Loaded Upgrades ");
     }
 
 
@@ -116,6 +118,7 @@ public class UpgradeManager : MonoBehaviour
 
     public static void UnloadUpgrades()
     {
+        Debug.Log("Unloading updates");
 
         foreach (var upgrade in BoughtUpgraders.ToList())
         {
@@ -132,6 +135,8 @@ public class UpgradeManager : MonoBehaviour
                 {
                     Upgrade.Upgrades[i].Level = 0;
                     Upgrade.Upgrades[i].Unlocked = Upgrade.Upgrades[i].InstantUnlocked;
+                    Upgrade.Upgrades[i].ClearParents();
+
                 }
             }
         }
