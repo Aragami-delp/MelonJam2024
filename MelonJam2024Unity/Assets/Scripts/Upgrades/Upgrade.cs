@@ -52,7 +52,7 @@ public class Upgrade
             1,
             new string[] { "mgntSpeed1" },
             false,
-            new Vector2(0, -1),
+            new Vector2(1, -1),
             5,
             (self, isIngame) =>
             {
@@ -72,7 +72,7 @@ public class Upgrade
             1,
             new string[] { "mgntScrapCapacity" , "mgntAutoReload"},
             false,
-            new Vector2(0, -2),
+            new Vector2(1, -2),
             5,
             (self, isIngame) =>
             {
@@ -92,7 +92,7 @@ public class Upgrade
             1,
             new string[] { },
             false,
-            new Vector2(-1, -3),
+            new Vector2(1, -3),
             5,
             (self, isIngame) =>
             {
@@ -109,7 +109,7 @@ public class Upgrade
             500,
             new string[] { },
             false,
-            new Vector2(1, -3),
+            new Vector2(2, -1),
             1,
             (self, isIngame) =>
             {
@@ -117,6 +117,25 @@ public class Upgrade
                 Cannon.Instance.m_autoReload = true;
             }
         ),
+        new Upgrade(
+            "AutoHarvest",
+            "smaller magnets",
+            "small magnets that Automatically harvest scrap",
+            "upg-scrap-auto",
+
+            500,
+            new string[] { },
+            false,
+            new Vector2(2, -2),
+            1,
+            (self, isIngame) =>
+            {
+                if (!isIngame) { return; }
+                //ScrapTable.Instance.
+            }
+        ),
+
+
         //Enemy -----------------------------------
         new Upgrade(
             "EnemySlow1",
@@ -125,9 +144,9 @@ public class Upgrade
             "upg-enemy-speed-1",
 
             1,
-            new string[] { "LandMine" },
+            new string[] { "LandMine" , "EnemyXP1"},
             false,
-            new Vector2(1, 0),
+            new Vector2(2, 1),
             5,
             (self, isIngame) =>
             {
@@ -145,14 +164,86 @@ public class Upgrade
             "upg-lane-mine-1",
 
             30,
-            new string[] { },
+            new string[] {"EnemyDmg" },
             false,
-            new Vector2(2, 0),
+            new Vector2(3, 1),
             1,
             (self, isIngame) =>
             {
                 if (!isIngame) { return; }
                 LaneSystem.Instance.m_landMinesActive = true;
+            }
+        ),
+        new Upgrade(
+            "EnemyDmg",
+            "Field studies",
+            "after all the time you know how to hurt them",
+            "upg-enemy-health-1",
+
+            30,
+            new string[] { },
+            false,
+            new Vector2(4, 1),
+            10,
+            (self, isIngame) =>
+            {
+                self.DefaultPriceIncrease(1.4f);
+                if (!isIngame) { return; }
+                Cannon.Instance.m_cannonDamage++;
+            }
+        ),
+        new Upgrade(
+            "EnemyXP1",
+            "Kill counter",
+            "you count more precisely maybe you missed a kill or two",
+            "upg-enemy-money-1",
+
+            20,
+            new string[] {"EnemyXP2" },
+            false,
+            new Vector2(2, 2),
+            5,
+            (self, isIngame) =>
+            {
+                self.DefaultPriceIncrease();
+                if (!isIngame) { return; }
+                GameManager.Instance.Multiplyer  *= 1.25f;  
+            }
+        ),
+        new Upgrade(
+            "EnemyXP2",
+            "Kill Computer",
+            "you need it for all your kills",
+            "upg-enemy-money-2",
+
+            50,
+            new string[] { "EnemyDmg","EnemyXP3" },
+            false,
+            new Vector2(3, 2),
+            5,
+            (self, isIngame) =>
+            {
+                self.DefaultPriceIncrease(1.5f);
+                if (!isIngame) { return; }
+                GameManager.Instance.Multiplyer  *= 1.35f;
+            }
+        ),
+        new Upgrade(
+            "EnemyXP3",
+            "Data center",
+            "it only calculates your income",
+            "upg-enemy-money-3",
+
+            100,
+            new string[] {},
+            false,
+            new Vector2(4, 1),
+            5,
+            (self, isIngame) =>
+            {
+                self.DefaultPriceIncrease(2f);
+                if (!isIngame) { return; }
+                GameManager.Instance.Multiplyer  *= 1.5f;
             }
         ),
         
@@ -166,12 +257,12 @@ public class Upgrade
             1,
             new string[] { "PlayerCarry1", "PlayerMineSpeed1" },
             false,
-            new Vector2(0, 1),
-            5,
+            new Vector2(-1, 1),
+            2,
             (self, isIngame) =>
             {
                 if (!isIngame) { return; }
-                PlayerController.Player.Speed = (int) (1.25 * PlayerController.Player.Speed);
+                PlayerController.Player.Speed = (int) (1.15 * PlayerController.Player.Speed);
             }
         ),
         new Upgrade(
@@ -181,9 +272,9 @@ public class Upgrade
             "upg-player-capa-1",
 
             1,
-            new string[] {  },
+            new string[] { "PlayerSpeed2" },
             false,
-            new Vector2(1, 1),
+            new Vector2(-1, 2),
             5,
             (self, isIngame) =>
             {
@@ -192,15 +283,33 @@ public class Upgrade
             }
         ),
         new Upgrade(
+            "PlayerSpeed2",
+            "Cardio training",
+            "pump up the numbers",
+            "upg-player-speed-2",
+
+            2,
+            new string[] {  },
+            false,
+            new Vector2(0, 2),
+            5,
+            (self, isIngame) =>
+            {
+                if (!isIngame) { return; }
+                PlayerController.Player.Speed = (int) (1.25 * PlayerController.Player.Speed);
+            }
+        ),
+
+        new Upgrade(
             "PlayerMineSpeed1",
             "Faster Drill",
-            "Increase the number of scraps you can get",
+            "nothing mutch but its yours and yours alone",
             "upg-player-scrap-mine-speed-1",
 
-            1,
-            new string[] { "PlayerMineDamage1" },
+            2,
+            new string[] { "PlayerMineDamage1" , "PlayerMineSpeed2"},
             false,
-            new Vector2(-1, 1),
+            new Vector2(-2, 1),
             1,
             (self, isIngame) =>
             {
@@ -209,15 +318,59 @@ public class Upgrade
             }
         ),
         new Upgrade(
+            "PlayerMineSpeed2",
+            "Even Faster Drill",
+            "wow that thing is fast",
+            "upg-player-scrap-mine-speed-2",
+
+            20,
+            new string[] {"PlayerMineSpeed3"},
+            false,
+            new Vector2(-3, 1),
+            2,
+            (self, isIngame) =>
+            {
+                if(self.Level >= 1 )
+                {
+                    self.Desc = "wow that thing is fast ... I can dual wield this";
+                }
+
+                if (!isIngame) { return; }
+                PlayerController.Player.harvestCooldown = (int) (0.9f * PlayerController.Player.harvestCooldown);
+            }
+        ),
+        new Upgrade(
+            "PlayerMineSpeed3",
+            "Fastest Drill",
+            "its the best around",
+            "upg-player-scrap-mine-speed-3",
+
+            1000,
+            new string[] { },
+            false,
+            new Vector2(-4, 1),
+            2,
+            (self, isIngame) =>
+            {
+                if(self.Level >= 1 )
+                {
+                    self.Desc = "its the best around .... you can even buy 2"; 
+                }
+                if (!isIngame) { return; }
+                PlayerController.Player.harvestCooldown = (int) (0.9f * PlayerController.Player.harvestCooldown);
+            }
+        ),
+
+        new Upgrade(
             "PlayerMineDamage1",
             "Stronger Drill",
             "Increase the number of scraps you can get",
             "upg-player-scrap-mine-dmg-1",
 
             30,
-            new string[] { },
+            new string[] { "PlayerMineDamage2"},
             false,
-            new Vector2(-1, 2),
+            new Vector2(-2, 2),
             1,
             (self, isIngame) =>
             {
@@ -225,6 +378,42 @@ public class Upgrade
                 PlayerController.Player.harvestDamage = (int) (1.25 * PlayerController.Player.harvestDamage);
             }
         ),
+        new Upgrade(
+            "PlayerMineDamage2",
+            "Even Stronger Drill",
+            "thats a hard Drill",
+            "upg-player-scrap-mine-dmg-2",
+
+            50,
+            new string[] {"PlayerMineDamage3" },
+            false,
+            new Vector2(-3, 2),
+            5,
+            (self, isIngame) =>
+            {
+                if (!isIngame) { return; }
+                PlayerController.Player.harvestDamage = (int) (1.25 * PlayerController.Player.harvestDamage);
+            }
+        ),
+        new Upgrade(
+            "PlayerMineDamage3",
+            "Stronger Drill",
+            "you can hurt someone with that",
+            "upg-player-scrap-mine-dmg-3",
+
+            500,
+            new string[] { },
+            false,
+            new Vector2(-4, 2),
+            10,
+            (self, isIngame) =>
+            {
+                if (!isIngame) { return; }
+                PlayerController.Player.harvestDamage = (int) (1.25 * PlayerController.Player.harvestDamage);
+            }
+        ),
+
+
         // Scrap -----------------------------------
         new Upgrade(
             "InitialScrapSize1",
@@ -235,7 +424,7 @@ public class Upgrade
             1,
             new string[] { "IncreaseScrapPileCapacity1", "IncreaseScrapTableCapacity1" },
             false,
-            new Vector2(-1, 0),
+            new Vector2(-1, -1),
             7,
             (self, isIngame) =>
             {
@@ -249,13 +438,13 @@ public class Upgrade
         new Upgrade(
             "ScrapDelivery",
             "Scrap Delivery",
-            "Gain scrap piles every 180s +1 per level",
-            "upg-scrap-car-1",
+            "Hier a driver that arrives every 180s",
+            "upg-scrap-car",
 
             1,
-            new string[] { },
+            new string[] {"carTime","carCap" },
             false,
-            new Vector2(-3, 0),
+            new Vector2(-2, -2),
             4,
             (self, isIngame) =>
             {
@@ -275,7 +464,7 @@ public class Upgrade
             1,
             new string[] { "ScrapDelivery" },
             false,
-            new Vector2(-2, 1),
+            new Vector2(-2, -1),
             10,
             (self, isIngame) =>
             {
@@ -296,8 +485,49 @@ public class Upgrade
             1,
             new string[] {"ScrapDelivery" },
             false,
-            new Vector2(-2, -1),
+            new Vector2(-1, -2),
             10,
+            (self, isIngame) =>
+            {
+                self.DefaultPriceIncrease();
+
+                if (!isIngame) { return; }
+
+                ScrapTable.Instance.MaxCapacity++;
+            }
+        ),
+        new Upgrade(
+            "carTime",
+            "tight schedule",
+            "your car arrives faster -30s",
+            "upg-scrap-car-2",
+
+            1,
+            new string[] {"ScrapDelivery" },
+            false,
+            new Vector2(-3, -2),
+            10,
+            (self, isIngame) =>
+            {
+                self.DefaultPriceIncrease();
+
+                if (!isIngame) { return; }
+
+                CarUpgrade.Instance.SecondCooldown -= 30f; 
+            }
+        ),
+        new Upgrade(
+            "carCap",
+            "Bigger car",
+            "The bigger the car the better",
+            "upg-scrap-car-1",
+
+            50,
+            new string[] {},
+            false,
+            new Vector2(-2, -3),
+            4,
+
             (self, isIngame) =>
             {
                 self.DefaultPriceIncrease();
