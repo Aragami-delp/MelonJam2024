@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     public int Score;
     public int Coins;
+    public float Multiplyer = 1f;
     
     private void Awake()
     {
@@ -44,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public static void IncreaseScore(int amount = 1)
     {
-        Instance.Coins += amount;
-        Instance.Score += amount;
+        Instance.Coins += (int) (amount * Instance.Multiplyer);
+        Instance.Score += (int) (amount * Instance.Multiplyer);
     }
 }

@@ -250,7 +250,7 @@ public class Upgrade
             "ScrapDelivery",
             "Scrap Delivery",
             "Gain scrap piles every 180s +1 per level",
-            "upg-scrap-piles-1",
+            "upg-scrap-car-1",
 
             1,
             new string[] { },

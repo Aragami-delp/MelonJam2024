@@ -10,7 +10,7 @@ public class Lane : MonoBehaviour
     [SerializeField] public Transform m_startPoint;
     [SerializeField] public Transform m_endPoint;
     [SerializeField] private SpriteRenderer _activeIndicator;
-    [SerializeField] private SpriteRenderer _landMineIndicator;
+    [SerializeField] private SwitchSprite _landMineIndicator;
 
     private List<Enemy> _activeEnemyList = new();
     private List<Bullet> _activeBulletList = new();
@@ -24,7 +24,7 @@ public class Lane : MonoBehaviour
     private void Start()
     {
         //_distance = Vector2.Distance(_startPoint.position, _endPoint.position);
-        _landMineIndicator.enabled = LaneSystem.Instance.m_landMinesActive;
+        _landMineIndicator.m_renderer.enabled = LaneSystem.Instance.m_landMinesActive;
     }
 
     public void SetLaneIndicator(bool active)
@@ -119,7 +119,7 @@ public class Lane : MonoBehaviour
     {
         landMineParticles.Play();
         landMineExploded = true;
-        _landMineIndicator.enabled = false;
+        _landMineIndicator.Switch(true);
         KillEnemy(enemy);
         MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.LAND_MINE);
     }
