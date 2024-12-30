@@ -115,13 +115,15 @@ public class MusicSoundManagement : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private AudioClip _upgradeMusic, _inGameMusic;
+    private AudioClip _inGameMusic;
 
     [SerializeField]
     private AudioSource _musicSource;
 
-    [SerializeField, InspectorName("Vol Multiplier")]
+    [SerializeField, InspectorName("Overall Volume Multiplier")]
     private float _volume = 1f;
+    [SerializeField, InspectorName("Music Volume")]
+    private float _musicvolume = 1f;
 
     [SerializeField]
     private bool _updateVolume = false;
@@ -130,16 +132,9 @@ public class MusicSoundManagement : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 0)
-        {
-            _musicSource.clip = _upgradeMusic;
-            _musicSource.Play();
-        }
-        else
-        {
-            _musicSource.clip = _inGameMusic;
-            _musicSource.Play();
-        }
+        _musicSource.clip = _inGameMusic;
+        _musicSource.volume = _musicvolume;
+        _musicSource.Play();
     }
 
     private void Awake()
@@ -151,7 +146,7 @@ public class MusicSoundManagement : MonoBehaviour
             return;
         }
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
