@@ -49,11 +49,11 @@ public class Upgrade
             "Shoot Scrap faster to deal more damage",
             "upg-mgnt-dmg-1",
 
-            1,
+            5,
             new string[] { "mgntSpeed1" },
             false,
             new Vector2(1, -1),
-            5,
+            20,
             (self, isIngame) =>
             {
                 self.DefaultPriceIncrease(1.3f);
@@ -69,7 +69,7 @@ public class Upgrade
             "Increase the move speed for the magnet",
             "upg-mgnt-speed-1",
 
-            1,
+            5,
             new string[] { "mgntScrapCapacity" , "mgntAutoReload"},
             false,
             new Vector2(1, -2),
@@ -123,7 +123,7 @@ public class Upgrade
             "small magnets that Automatically harvest scrap",
             "upg-scrap-auto",
 
-            500,
+            800,
             new string[] { "AutoHarvestAmount", "AutoHarvestTime"},
             false,
             new Vector2(2, -2),
@@ -140,7 +140,7 @@ public class Upgrade
             "better filtering for the small magnets result in faster scrap harvests ",
             "upg-scrap-auto-time",
 
-            500,
+            200,
             new string[] { },
             false,
             new Vector2(3, -2),
@@ -159,7 +159,7 @@ public class Upgrade
             "the small magnets get stronger and harvest more",
             "upg-scrap-auto-amount",
 
-            500,
+            300,
             new string[] { },
             false,
             new Vector2(2, -3),
@@ -180,7 +180,7 @@ public class Upgrade
             "Slowes down all enemys",
             "upg-enemy-speed-1",
 
-            1,
+            15,
             new string[] { "LandMine" , "EnemyXP1"},
             false,
             new Vector2(2, 1),
@@ -291,7 +291,7 @@ public class Upgrade
             "Increase Player Walk Speed",
             "upg-player-speed-1",
 
-            1,
+            20,
             new string[] { "PlayerCarry1", "PlayerMineSpeed1" },
             false,
             new Vector2(-1, 1),
@@ -308,7 +308,7 @@ public class Upgrade
             "Increase the number of scraps the Player can hold",
             "upg-player-capa-1",
 
-            1,
+            10,
             new string[] { "PlayerSpeed2" },
             false,
             new Vector2(-1, 2),
@@ -325,13 +325,14 @@ public class Upgrade
             "pump up the numbers",
             "upg-player-speed-2",
 
-            2,
+            15,
             new string[] {  },
             false,
             new Vector2(0, 2),
             5,
             (self, isIngame) =>
             {
+                self.DefaultPriceIncrease(1.5f);
                 if (!isIngame) { return; }
                 PlayerController.Player.Speed = (int) (1.25 * PlayerController.Player.Speed);
             }
@@ -343,7 +344,7 @@ public class Upgrade
             "nothing mutch but its yours and yours alone",
             "upg-player-scrap-mine-speed-1",
 
-            2,
+            10,
             new string[] { "PlayerMineDamage1" , "PlayerMineSpeed2"},
             false,
             new Vector2(-2, 1),
@@ -360,7 +361,7 @@ public class Upgrade
             "wow that thing is fast",
             "upg-player-scrap-mine-speed-2",
 
-            20,
+            100,
             new string[] {"PlayerMineSpeed3"},
             false,
             new Vector2(-3, 1),
@@ -382,7 +383,7 @@ public class Upgrade
             "its the best around",
             "upg-player-scrap-mine-speed-3",
 
-            1000,
+            500,
             new string[] { },
             false,
             new Vector2(-4, 1),
@@ -478,18 +479,18 @@ public class Upgrade
             "Hier a driver that arrives every 180s",
             "upg-scrap-car",
 
-            1,
+            100,
             new string[] {"carTime","carCap" },
             false,
             new Vector2(-2, -2),
-            4,
+            1,
             (self, isIngame) =>
             {
                 self.DefaultPriceIncrease();
 
                 if (!isIngame) { return; }
 
-                ScrapManager.Instance.scrapSpawnAmount++;
+                CarUpgrade.Instance.Active = true;
             }
         ),
         new Upgrade(
@@ -498,17 +499,21 @@ public class Upgrade
             "There are more scrap in one scrap pile",
             "upg-scrap-capacity-1",
 
-            1,
+            5,
             new string[] { "ScrapDelivery" },
             false,
             new Vector2(-2, -1),
             10,
             (self, isIngame) =>
             {
+                if(self.Level == 1)
+                {
+                    self.Cost = 20;
+                }
+
                 self.DefaultPriceIncrease();
 
                 if (!isIngame) { return; }
-                CarUpgrade.Instance.Active = true; 
                 CarUpgrade.Instance.ScrapPlaceAmount++; 
 
             }
@@ -519,7 +524,7 @@ public class Upgrade
             "You can put more scrap on the table",
             "upg-scrap-table-capacity",
 
-            1,
+            15,
             new string[] {"ScrapDelivery" },
             false,
             new Vector2(-1, -2),
@@ -539,7 +544,7 @@ public class Upgrade
             "your car arrives faster -30s",
             "upg-scrap-car-2",
 
-            1,
+            60,
             new string[] {},
             false,
             new Vector2(-3, -2),
