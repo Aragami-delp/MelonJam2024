@@ -73,52 +73,37 @@ public class MusicSoundManagement : MonoBehaviour
         {
             if (reference.m_type == audioType)
             {
-                if (!loop)
+                DataAudioType loopSource = null;
+                foreach (DataAudioType dataAudioType in _loops)
                 {
-                    _sfxSource.clip = reference.m_audioClip;
-                    _sfxSource.volume = reference.m_volMultiplier * _volume;
-                    _sfxSource.Play();
-                    return;
-                }
-                else
-                {
-                    DataAudioType loopSource = null;
-                    foreach (DataAudioType dataAudioType in _loops)
+                    if (dataAudioType.m_audioSource.isPlaying)
                     {
-                        if (dataAudioType.m_audioSource.isPlaying)
-                        {
-                            if (!allowMultipleLoop && audioType == dataAudioType.m_audioType)
-                                return;
-                            continue;
-                        }
-                        loopSource = dataAudioType;
-                        break;
+                        if (!allowMultipleLoop && audioType == dataAudioType.m_audioType)
+                            return;
+                        continue;
                     }
-                    if (loopSource == null)
-                        loopSource = Instantiate(_loopDummy, parent: _loopsParent);
-
-                    loopSource.m_audioType = audioType;
-                    loopSource.m_audioSource.clip = reference.m_audioClip;
-                    loopSource.m_audioSource.volume = reference.m_volMultiplier * _volume;
-                    loopSource.m_audioSource.Play();
-                    _loops.Add(loopSource);
-                    return;
+                    loopSource = dataAudioType;
+                    break;
                 }
+                if (loopSource == null)
+                {
+                    loopSource = Instantiate(_loopDummy, parent: _loopsParent);
+                    _loops.Add(loopSource);
+                }
+
+                loopSource.m_audioType = audioType;
+                loopSource.m_audioSource.clip = reference.m_audioClip;
+                loopSource.m_audioSource.volume = reference.m_volMultiplier * _volume;
+                loopSource.m_audioSource.loop = loop;
+                loopSource.m_audioSource.Play();
+                return;
             }
         }
         Debug.LogWarning($"Can't find AudioClip for {audioType.ToString()}");
     }
 
-    public void StopSFXSource()
-    {
-        _sfxSource.Stop();
-    }
-
     [SerializeField]
     private List<AudioReference> _sfxReferences = new();
-
-    [SerializeField]
-    private AudioSource _sfxSource;
 
     [SerializeField]
     private Transform _loopsParent;
