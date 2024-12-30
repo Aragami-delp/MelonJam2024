@@ -256,7 +256,7 @@ public class Upgrade
             new string[] { },
             false,
             new Vector2(-3, 0),
-            7,
+            4,
             (self, isIngame) =>
             {
                 self.DefaultPriceIncrease();

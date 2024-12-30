@@ -86,7 +86,10 @@ public class UpgradeButton : MonoBehaviour
 
     public void BuyUpgrade() 
     {
-        OnUpgradeBought(true);
+        if (upgrade.Level < upgrade.MaxLevel) 
+        { 
+            OnUpgradeBought(true);
+        }
     }
 
     public void OnUpgradeBought(bool UiBought)
