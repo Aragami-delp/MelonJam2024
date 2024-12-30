@@ -15,12 +15,19 @@ public class Cannon : MonoBehaviour
     [SerializeField] private int _startingDamage;
     [SerializeField, Tooltip("True for magnet turns on")] private UnityEvent<bool> _onSwitchPolarity;
 
+    [Header("Particle Stuff")]
+    [SerializeField]
+    ParticleSystem pullParticles;
+    [SerializeField]
+    ParticleSystem pullParticlesWeak, pushParticles; 
+
     private List<float> _lanePositions = new();
     private bool _isMoving = false;
     private Vector3 _currentTarget = new();
     private List<Bullet> _holdingScrap = new();
     private bool _isAttracting = false;
     private bool _shootNextFrame = false;
+
 
     #region Upgrade Targets
     [Header("Upgrades")]
@@ -107,12 +114,15 @@ public class Cannon : MonoBehaviour
         MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.BUTTON_POLARITY);
         _isAttracting = !_isAttracting;
         _onSwitchPolarity?.Invoke(_isAttracting);
+        
         if (_isAttracting)
         {
             _shootNextFrame = false;
         }
         else
         {
+            pushParticles.Play();
+
             _shootNextFrame = true;
         }
     }
@@ -197,6 +207,7 @@ public class Cannon : MonoBehaviour
         else if (!_isMoving && _isAttracting && _currentLane == -1 && _holdingScrap.Count == 0)
         {
             PickupScrap(ScrapTable.Instance.TryGetScrap(m_maxScrapCapacity));
+            pullParticles.Play();
         }
     }
 }
