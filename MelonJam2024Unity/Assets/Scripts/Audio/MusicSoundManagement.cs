@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static MusicSoundManagement;
 
 public class MusicSoundManagement : MonoBehaviour
 {
@@ -53,6 +54,11 @@ public class MusicSoundManagement : MonoBehaviour
         Debug.LogWarning($"Can't find AudioClip for {audioType.ToString()}");
     }
 
+    /// <summary>
+    /// Stops one instance of a specifc audiotype
+    /// </summary>
+    /// <param name="audioType"></param>
+    /// <param name="stopAll">stops all instances of that audiotype</param>
     public void StopSFXLoop(AUDIOTYPE audioType, bool stopAll = false)
     {
         foreach (DataAudioType loopSource in _loops)
@@ -64,6 +70,18 @@ public class MusicSoundManagement : MonoBehaviour
                     return;
                 continue;
             }
+        }
+    }
+
+    /// <summary>
+    /// Stops all loops
+    /// </summary>
+    public void StopSFXLoop()
+    {
+        foreach (DataAudioType loopSource in _loops)
+        {
+            loopSource.m_audioSource.Stop();
+            continue;
         }
     }
 
@@ -132,9 +150,13 @@ public class MusicSoundManagement : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        _musicSource.clip = _inGameMusic;
-        _musicSource.volume = _musicvolume;
-        _musicSource.Play();
+        StopSFXLoop();
+        if (!_musicSource.isPlaying)
+        {
+            _musicSource.clip = _inGameMusic;
+            _musicSource.volume = _musicvolume;
+            _musicSource.Play();
+        }
     }
 
     private void Awake()
@@ -146,7 +168,7 @@ public class MusicSoundManagement : MonoBehaviour
             return;
         }
 
-        //SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
         Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
