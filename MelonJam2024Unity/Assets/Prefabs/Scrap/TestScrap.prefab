@@ -118,7 +118,7 @@ MonoBehaviour:
   m_advancement: 0
   m_damage: 1
   _rotateSpeed: 100
-  _maxFlyHight: 1
+  _maxFlyHight: 0.5
   _flyCurve:
     serializedVersion: 2
     m_Curve:
