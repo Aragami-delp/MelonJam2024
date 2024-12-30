@@ -1,27 +1,51 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Serialization;
+using System.Collections;
 
 public class ScrapTable : MonoBehaviour
 {
     [SerializeField]
     Transform[] tables;
-    
+
     [SerializeField]
     public int MaxCapacity = 4;
-    
+
     public List<Bullet> Scrap = new List<Bullet>();
 
     public static ScrapTable Instance;
 
-    private void Awake()
+    #region ScrapGenerator
+
+    [SerializeField] private SwitchSprite _generatorSprite;
+    [SerializeField] private Bullet _toGenerateScrap;
+    [ReadOnly, SerializeField] private float _timeToGenerate = 20f;
+    [ReadOnly, SerializeField] private int m_amountToGenerate = 0;
+    public float m_timeToGenerate
     {
-        Instance = this; 
+        get { return _timeToGenerate; }
+        set
+        {
+            _generatorSprite?.Switch(value > 0);
+            _timeToGenerate = Mathf.Clamp(value, .5f, 120f);
+        }
     }
 
-    public void OnInteractedWith(GameObject caller) 
+    #endregion
+
+    private void Awake()
     {
-        if (caller.TryGetComponent(out PlayerController player)) 
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(AddNewScrapRepeatedly(m_timeToGenerate));
+    }
+
+    public void OnInteractedWith(GameObject caller)
+    {
+        if (caller.TryGetComponent(out PlayerController player))
         {
             if (MaxCapacity <= Scrap.Count)
             {
@@ -42,7 +66,28 @@ public class ScrapTable : MonoBehaviour
         */
     }
 
-    public void TryAddScrap(List<Bullet> scrapList) 
+    private IEnumerator AddNewScrapRepeatedly(float interval)
+    {
+        while (true) // until scene change
+        {
+            yield return new WaitForSeconds(interval);
+            TryAddNewScrap(m_amountToGenerate);
+        }
+    }
+
+    public void TryAddNewScrap(int amount)
+    {
+        List<Bullet> newScrap = new();
+        Mathf.Clamp(amount, 0, MaxCapacity - Scrap.Count);
+        for (int i = 0; i < amount; i++)
+        {
+            newScrap.Add(Instantiate(_toGenerateScrap));
+        }
+        if (newScrap.Count > 0)
+            TryAddScrap(newScrap);
+    }
+
+    public void TryAddScrap(List<Bullet> scrapList)
     {
         Scrap.AddRange(scrapList);
 
@@ -58,21 +103,21 @@ public class ScrapTable : MonoBehaviour
         }
     }
 
-    public List<Bullet> TryGetScrap(int amount) 
+    public List<Bullet> TryGetScrap(int amount)
     {
         List<Bullet> returnList = new();
 
-        if (amount < Scrap.Count) 
+        if (amount < Scrap.Count)
         {
-            returnList = Scrap.GetRange(0,amount);
-            Scrap.RemoveRange(0,amount);
+            returnList = Scrap.GetRange(0, amount);
+            Scrap.RemoveRange(0, amount);
         }
-        else 
+        else
         {
             returnList =  Scrap.GetRange(0, Scrap.Count);
-            Scrap.Clear(); 
+            Scrap.Clear();
         }
 
-        return returnList; 
+        return returnList;
     }
 }
