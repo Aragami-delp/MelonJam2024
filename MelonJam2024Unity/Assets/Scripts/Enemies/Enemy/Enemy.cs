@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Enemy : LaneObject
 {
-    public float m_speedMultiplyer = 1; 
+    [ReadOnly] public float m_speedMultiplyer = 1; 
     [SerializeField] public int m_health = 2;
     [SerializeField] public int m_lootValue = 1;
     [SerializeField] private float _customSpeedMultiplier = 1f;
@@ -14,6 +14,6 @@ public class Enemy : LaneObject
 
     public override void UpdatePositionAdvancement(Vector2 newPos)
     {
-        this.transform.position = newPos;
+        this.transform.position = newPos + new Vector2(0, this.transform.localScale.y * 0.5f - 0.5f);
     }
 }

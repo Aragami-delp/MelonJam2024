@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     }
     public static GameManager Instance { get; private set; }
 
+    public int Score;
     public int Coins;
     
     private void Awake()
@@ -39,5 +40,11 @@ public class GameManager : MonoBehaviour
     public static void LoadScene(GAMESCENE scene)
     {
         SceneManager.LoadScene(scene == GAMESCENE.UPGRADE ? 0 : 1);
+    }
+
+    public static void IncreaseScore(int amount = 1)
+    {
+        Instance.Coins += amount;
+        Instance.Score += amount;
     }
 }

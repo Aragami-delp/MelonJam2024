@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ea8932f9b24182e46ab784217558b6e1
+guid: 76653fb33b361cd4cb4e22c5fad697f6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2278566297644842510
-    second: Icon_0
+      213: -7512142688868546059
+    second: upg-scrap-car_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Icon_0
+      name: upg-scrap-car_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f1c3bf4608e060e0800000000000000
-      internalID: -2278566297644842510
+      spriteID: 5f941f786028fb790800000000000000
+      internalID: -7512142688868546059
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Icon_0: -2278566297644842510
+      upg-scrap-car_0: -7512142688868546059
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

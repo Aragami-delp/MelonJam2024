@@ -10,7 +10,7 @@ public class Upgrade
             "NewBeginning",
             "New Beginning",
             "Lets build a Cannon",
-            "Icon",
+            "upg-mgnt-build",
 
             0,
             new string[] { "mgntDamage" , "EnemySlow1", "PlayerSpeed1", "InitialScrapSize1"},
@@ -247,13 +247,33 @@ public class Upgrade
             }
         ),
         new Upgrade(
+            "ScrapDelivery",
+            "Scrap Delivery",
+            "Gain scrap piles every 180s +1 per level",
+            "upg-scrap-car-1",
+
+            1,
+            new string[] { },
+            false,
+            new Vector2(-3, 0),
+            7,
+            (self, isIngame) =>
+            {
+                self.DefaultPriceIncrease();
+
+                if (!isIngame) { return; }
+
+                ScrapManager.Instance.scrapSpawnAmount++;
+            }
+        ),
+        new Upgrade(
             "IncreaseScrapPileCapacity1",
             "Denser Scrap Piles",
             "There are more scrap in one scrap pile",
             "upg-scrap-capacity-1",
 
             1,
-            new string[] { },
+            new string[] { "ScrapDelivery" },
             false,
             new Vector2(-2, 1),
             10,
@@ -262,8 +282,9 @@ public class Upgrade
                 self.DefaultPriceIncrease();
 
                 if (!isIngame) { return; }
+                CarUpgrade.Instance.Active = true; 
+                CarUpgrade.Instance.ScrapPlaceAmount++; 
 
-                ScrapManager.Instance.scrapCapacityMultiplier++;
             }
         ),
         new Upgrade(
@@ -273,7 +294,7 @@ public class Upgrade
             "upg-scrap-table-capacity",
 
             1,
-            new string[] { },
+            new string[] {"ScrapDelivery" },
             false,
             new Vector2(-2, -1),
             10,
@@ -350,10 +371,18 @@ public class Upgrade
         }
     }
 
+    public void ClearParents() 
+    {
+        parents.Clear();
+        activatedParents.Clear();
+    }
 
     public void SetupParent(Upgrade parent)
     {
-        parents.Add(parent);
+        if (!parents.Contains(parent)) 
+        { 
+            parents.Add(parent);
+        }
     }
 
     public void UpgradeBought(bool ingame, bool buttonBought = false)

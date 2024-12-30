@@ -10,7 +10,7 @@ public class Lane : MonoBehaviour
     [SerializeField] public Transform m_startPoint;
     [SerializeField] public Transform m_endPoint;
     [SerializeField] private SpriteRenderer _activeIndicator;
-    [SerializeField] private SpriteRenderer _landMineIndicator;
+    [SerializeField] private SwitchSprite _landMineIndicator;
 
     private List<Enemy> _activeEnemyList = new();
     private List<Bullet> _activeBulletList = new();
@@ -18,10 +18,13 @@ public class Lane : MonoBehaviour
 
     private bool landMineExploded = false;
 
+    [SerializeField]
+    private ParticleSystem landMineParticles;
+
     private void Start()
     {
         //_distance = Vector2.Distance(_startPoint.position, _endPoint.position);
-        _landMineIndicator.enabled = LaneSystem.Instance.m_landMinesActive;
+        _landMineIndicator.m_renderer.enabled = LaneSystem.Instance.m_landMinesActive;
     }
 
     public void SetLaneIndicator(bool active)
@@ -39,10 +42,11 @@ public class Lane : MonoBehaviour
         }
     }
 
-    public void SpawnEnemy(Enemy enemyPrefab, float slowDebuffMultiplierReduction)
+    public void SpawnEnemy(Enemy enemyPrefab, float slowDebuffMultiplierReduction, int spriteLayer)
     {
         Enemy newEnemy = Instantiate(enemyPrefab);
         newEnemy.m_speedMultiplyer = 1 - slowDebuffMultiplierReduction;
+        newEnemy.SetSpriteLayer(spriteLayer);
         newEnemy.transform.position = m_startPoint.position;
         _activeEnemyList.Add(newEnemy);
     }
@@ -105,14 +109,15 @@ public class Lane : MonoBehaviour
     {
         _activeEnemyList.Remove(enemy);
         //LaneSystem.Instance.m_onEnemyDied.Invoke(enemy.m_lootValue);
-        if (GameManager.Instance) GameManager.Instance.Coins += enemy.m_lootValue;
+        if (GameManager.Instance) GameManager.IncreaseScore(enemy.m_lootValue);
         Destroy(enemy.gameObject); // TODO: Pooling
     }
 
     private void TriggerLandMine(Enemy enemy)
     {
+        landMineParticles.Play();
         landMineExploded = true;
-        _landMineIndicator.enabled = false;
+        _landMineIndicator.Switch(true);
         KillEnemy(enemy);
         MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.LAND_MINE);
     }

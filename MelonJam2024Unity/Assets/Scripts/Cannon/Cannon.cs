@@ -15,12 +15,19 @@ public class Cannon : MonoBehaviour
     [SerializeField] private int _startingDamage;
     [SerializeField, Tooltip("True for magnet turns on")] private UnityEvent<bool> _onSwitchPolarity;
 
+    [Header("Particle Stuff")]
+    [SerializeField]
+    ParticleSystem pullParticles;
+    [SerializeField]
+    ParticleSystem pullParticlesWeak, pushParticles; 
+
     private List<float> _lanePositions = new();
     private bool _isMoving = false;
     private Vector3 _currentTarget = new();
     private List<Bullet> _holdingScrap = new();
     private bool _isAttracting = false;
     private bool _shootNextFrame = false;
+
 
     #region Upgrade Targets
     [Header("Upgrades")]
@@ -53,6 +60,8 @@ public class Cannon : MonoBehaviour
     {
         Instance = null;
     }
+
+    private bool _isHoldingScrap => _holdingScrap.Count > 0;
 
     /// <summary>
     /// -1 == Pickup; 
@@ -107,12 +116,25 @@ public class Cannon : MonoBehaviour
         MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.BUTTON_POLARITY);
         _isAttracting = !_isAttracting;
         _onSwitchPolarity?.Invoke(_isAttracting);
+        
         if (_isAttracting)
         {
+            if (_isHoldingScrap) 
+            {
+                pullParticlesWeak.Play();
+            }
+            else 
+            { 
+                pullParticles.Play();
+            }
+
             _shootNextFrame = false;
         }
         else
         {
+            pullParticles.Stop();
+            pullParticles.Clear();
+
             _shootNextFrame = true;
         }
     }
@@ -121,6 +143,13 @@ public class Cannon : MonoBehaviour
     {
         if (_currentLane != -1)
         {
+            pullParticlesWeak.Stop();
+            pullParticlesWeak.Clear();
+            pullParticles.Stop();
+            pullParticles.Clear();
+
+            pushParticles.Play();
+
             GetCurrentLane.Shoot(_holdingScrap);
             _holdingScrap.Clear();
         }
@@ -130,6 +159,10 @@ public class Cannon : MonoBehaviour
     {
         if (scrap.Count > 0)
         {
+            pullParticles.Stop();
+            pullParticles.Clear();
+            pullParticlesWeak.Play();
+
             MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.MAGNET_SCRAP_ATTACH);
         }
         _holdingScrap = scrap;

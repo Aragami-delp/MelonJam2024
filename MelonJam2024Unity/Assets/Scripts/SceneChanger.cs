@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement; 
 
@@ -8,7 +10,9 @@ public class UpgradeUiManager : MonoBehaviour
 
     public Transform UpgradeParent;
     public Transform Details;
-    public GameObject PlayGameButton; 
+    public GameObject PlayGameButton;
+    public TMP_Text Money;
+    public TMP_Text Score;
     
 
     private void Awake()
@@ -22,6 +26,12 @@ public class UpgradeUiManager : MonoBehaviour
         {
             PlayGameButton.SetActive(false);
         }
+    }
+
+    private void Update()
+    {
+        Money.SetText("Coins: " + GameManager.Instance.Coins);
+        Score.SetText("Score: " + GameManager.Instance.Score);
     }
 
     public void StartGame() 

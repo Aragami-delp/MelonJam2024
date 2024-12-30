@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class UiManager : MonoBehaviour
 {
@@ -9,8 +11,20 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     private Transform WorldCanvas, TextPrefab, TutorialBoxPrefab;
 
+    public TMP_Text Money;
+    public TMP_Text Score;
+    
     private int tutorialTextProgress;
-    GameObject lastTutorialBoy; 
+    GameObject lastTutorialBoy;
+
+    private void Awake()
+    {
+        if (GameManager.Instance == null)
+        {
+            GameManager.LoadScene(GameManager.GAMESCENE.UPGRADE);
+        }
+    }
+
     private void Start()
     {
         if (!GameManager.Instance.TutorialPlayed) 
@@ -31,6 +45,12 @@ public class UiManager : MonoBehaviour
         }
 
         Instance = this; 
+    }
+
+    public void Update()
+    {
+        Money.SetText("Coins: " + GameManager.Instance.Coins);
+        Score.SetText("Score: " + GameManager.Instance.Score);
     }
 
     public static void DisplayDamageText(string text, Vector3 targetpos,Color color) 
