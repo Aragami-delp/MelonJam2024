@@ -71,11 +71,11 @@ public class UiManager : MonoBehaviour
                 break;
 
             case 3:
-                SpawnTutorialBox("Pressing E here to drop all scrap ", new Vector2(0.7f, 9.25f));
+                SpawnTutorialBox("Pressing E here to drop all scrap ", new Vector2(-15.31f, 3f));
                 break;
 
             case 4:
-                SpawnTutorialBox("use these buttons to controll the magnet", new Vector2(0.7f, 9.25f));
+                SpawnTutorialBox("use these buttons to controll the magnet", new Vector2(-6f, 10f));
                 break;
 
             case 5:
