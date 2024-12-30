@@ -112,7 +112,7 @@ MonoBehaviour:
   _cannon: {fileID: 8175260915485025718}
   _scrapHoldPos: {fileID: 6403933603403598356}
   _bulletPrefab: {fileID: 4352268472978468666, guid: e171874c545cfe64592084c42d8fb844, type: 3}
-  _startingDamage: 5
+  _startingDamage: 3
   _onSwitchPolarity:
     m_PersistentCalls:
       m_Calls: []

@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
         if (callback.started) 
         {
-            RaycastHit2D hit = Physics2D.CircleCast(transform.position,0.7f,Vector2.one,0, layer);
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position,0.6f,Vector2.one,0, layer);
 
             if (hit.collider)
             {

@@ -23,8 +23,16 @@ public class LaneSystem : MonoBehaviour
     [SerializeField, Range(1f, 20f)] private float _minSpawnDelay = 5f;
     [SerializeField, Range(1f, 20f)] private float _maxSpawnDelay = 10f;
     [SerializeField, Range(1f, 20f)] private float _initialSpawnDelay = 10f;
+    
+    [Header("Difficultly")]
+    [SerializeField, Range(0f, 1f)] private float _spawnDelayReduction = 0.95f;
+    [SerializeField, Range(0f, 20f)] private float _spawnDelayReductionInterval = 5f;
+    
+    [SerializeField, Range(0f, 20f)] private float _reductionMin = 1f;
+    [SerializeField, Range(0f, 20f)] private float _reductionMax = 3f;
     private float _currentSpawnDelay = 0.75f;
     private float _timeSinceLastSpawn = 0f;
+    private float _timeSinceReduction = 0f;
 
     [SerializeField] public Sprite m_onLaneSprite;
 
@@ -82,6 +90,7 @@ public class LaneSystem : MonoBehaviour
         if (!_spawnEnemies) { return; }
 
         _timeSinceLastSpawn += Time.deltaTime;
+        _timeSinceReduction += Time.deltaTime;
 
         if (_timeSinceLastSpawn > _currentSpawnDelay)
         {
@@ -89,6 +98,13 @@ public class LaneSystem : MonoBehaviour
             _currentSpawnDelay = UnityEngine.Random.Range(_minSpawnDelay, _maxSpawnDelay);
 
             SpawnEnemy();
+        }
+        
+        if (_timeSinceReduction > _spawnDelayReductionInterval)
+        {
+            _timeSinceReduction = 0f;
+            _minSpawnDelay = Math.Max(_reductionMin, _minSpawnDelay * _spawnDelayReduction);
+            _maxSpawnDelay = Math.Max(_reductionMax, _maxSpawnDelay * _spawnDelayReduction);
         }
     }
 
