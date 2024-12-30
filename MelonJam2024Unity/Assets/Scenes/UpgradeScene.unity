@@ -150,7 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TutorialPlayed: 0
   Score: 0
-  Coins: 100000
+  Coins: 0
+  Multiplyer: 1
 --- !u!4 &21464389
 Transform:
   m_ObjectHideFlags: 0
