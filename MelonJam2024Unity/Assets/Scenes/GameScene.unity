@@ -6609,42 +6609,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: _enemyPrefabList.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: _enemyPrefabList.Array.data[0].m_enemyPrefab
-      value: 
-      objectReference: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
-    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: _enemyPrefabList.Array.data[1].m_enemyPrefab
-      value: 
-      objectReference: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
-    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: _enemyPrefabList.Array.data[2].m_enemyPrefab
-      value: 
-      objectReference: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
-    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: _enemyPrefabList.Array.data[3].m_enemyPrefab
-      value: 
-      objectReference: {fileID: 2846640524529801957, guid: b2c68524943ec744eb54ba4bf2a14aa1, type: 3}
-    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: _enemyPrefabList.Array.data[0].m_spawnProbability
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: _enemyPrefabList.Array.data[1].m_spawnProbability
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: _enemyPrefabList.Array.data[2].m_spawnProbability
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7590990150615512953, guid: 099763d3d6ca7c84e87ebcc1f438c196, type: 3}
-      propertyPath: _enemyPrefabList.Array.data[3].m_spawnProbability
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

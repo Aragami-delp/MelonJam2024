@@ -23,7 +23,8 @@ public class MusicSoundManagement : MonoBehaviour
         MAGNET_MOVE,
         MAGNET_SCRAP_ATTACH,
         SCRAP_HIT,
-        LAND_MINE
+        LAND_MINE,
+        CLICK
     }
 
     [Serializable]
