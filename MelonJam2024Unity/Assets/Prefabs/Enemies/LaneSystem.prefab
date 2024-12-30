@@ -724,7 +724,7 @@ MonoBehaviour:
   _upgradeScene: 0
   _minSpawnDelay: 5
   _maxSpawnDelay: 10
-  _initialSpawnDelay: 5
+  _initialSpawnDelay: 2.5
   _spawnDelayReduction: 0.95
   _spawnDelayReductionInterval: 5
   _reductionMin: 1
