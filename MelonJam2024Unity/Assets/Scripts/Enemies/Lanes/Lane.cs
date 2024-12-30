@@ -85,6 +85,8 @@ public class Lane : MonoBehaviour
 
     private void BulletHitEnemy(Bullet bullet, Enemy enemy)
     {
+        UiManager.DisplayDamageText(bullet.m_damage.ToString(), enemy.transform.position,Color.red);
+
         MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.SCRAP_HIT);
         enemy.m_health -= bullet.m_damage;
         if (enemy.m_health > 0)
