@@ -107,7 +107,7 @@ public class Upgrade
             "upg-mgnt-reload",
 
             500,
-            new string[] { },
+            new string[] { "AutoHarvest" },
             false,
             new Vector2(2, -1),
             1,
@@ -124,14 +124,51 @@ public class Upgrade
             "upg-scrap-auto",
 
             500,
-            new string[] { },
+            new string[] { "AutoHarvestAmount", "AutoHarvestTime"},
             false,
             new Vector2(2, -2),
             1,
             (self, isIngame) =>
             {
                 if (!isIngame) { return; }
-                //ScrapTable.Instance.
+                ScrapTable.Instance.m_amountToGenerate = 1; 
+            }
+        ),
+        new Upgrade(
+            "AutoHarvestTime",
+            "faster filtering",
+            "better filtering for the small magnets result in faster scrap harvests ",
+            "upg-scrap-auto-time",
+
+            500,
+            new string[] { },
+            false,
+            new Vector2(3, -2),
+            10,
+            (self, isIngame) =>
+            {
+                self.DefaultPriceIncrease();
+                if (!isIngame) { return; }
+                ScrapTable.Instance.m_timeToGenerate --;
+            }
+        ),
+
+        new Upgrade(
+            "AutoHarvestAmount",
+            "small but stronger ",
+            "the small magnets get stronger and harvest more",
+            "upg-scrap-auto-amount",
+
+            500,
+            new string[] { },
+            false,
+            new Vector2(2, -3),
+            4,
+            (self, isIngame) =>
+            {
+                self.DefaultPriceIncrease();
+                if (!isIngame) { return; }
+                ScrapTable.Instance.m_amountToGenerate += 2;
             }
         ),
 
@@ -237,7 +274,7 @@ public class Upgrade
             100,
             new string[] {},
             false,
-            new Vector2(4, 1),
+            new Vector2(3, 3),
             5,
             (self, isIngame) =>
             {
@@ -503,7 +540,7 @@ public class Upgrade
             "upg-scrap-car-2",
 
             1,
-            new string[] {"ScrapDelivery" },
+            new string[] {},
             false,
             new Vector2(-3, -2),
             10,
