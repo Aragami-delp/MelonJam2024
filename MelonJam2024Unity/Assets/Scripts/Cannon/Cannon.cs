@@ -77,10 +77,11 @@ public class Cannon : MonoBehaviour
         _currentLane = Mathf.Clamp(lane, -1, LaneSystem.Instance.m_lanes.Count - 1);
         _currentTarget = new Vector2(_cannon.transform.position.x, _currentLane == -1 ? _scrapPickupY.position.y : GetCurrentLane.m_endPoint.transform.position.y);
 
+        if (!_isMoving)
+            MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.MAGNET_MOVE);
         _isMoving = true;
 
         LaneSystem.Instance.UpdateLaneIndicator(_currentLane);
-        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.MAGNET_MOVE);
     }
 
     // Top to bottom. Highest lane is 0
