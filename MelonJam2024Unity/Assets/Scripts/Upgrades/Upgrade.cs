@@ -81,7 +81,7 @@ public class Upgrade
             "mgntScrapCapacity",
             "Bigger Scrap Piles",
             "Shoot Bigger Scrap Piles to do more damage",
-            "upg-mgnt-reload",
+            "upg-mgnt-scrap-capa-1",
 
             1,
             new string[] { },

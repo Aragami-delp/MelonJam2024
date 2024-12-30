@@ -103,8 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_tilesSpeed: 0.5
   m_advancement: 0
-  m_health: 1
+  m_speedMultiplyer: 1
+  m_health: 2
   m_lootValue: 1
+  _customSpeedMultiplier: 1
 --- !u!95 &2547711197067121290
 Animator:
   serializedVersion: 7
