@@ -102,6 +102,7 @@ public class MusicSoundManagement : MonoBehaviour
                     loopSource.m_audioSource.volume = reference.m_volMultiplier * _volume;
                     loopSource.m_audioSource.Play();
                     _loops.Add(loopSource);
+                    return;
                 }
             }
         }

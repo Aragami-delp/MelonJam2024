@@ -179,6 +179,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, 0.6f);
+    }
+
     public bool CanTakeMoreLoot() 
     {
         return Scrap.Count + 1 <= MaxCarringCapacity;
