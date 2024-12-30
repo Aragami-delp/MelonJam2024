@@ -213,8 +213,8 @@ MonoBehaviour:
   _loopsParent: {fileID: 4637043522653043704}
   _loopDummy: {fileID: 7648868894188204507, guid: 2c9327962884b424496f7d5eb7551045, type: 3}
   _upgradeMusic: {fileID: 0}
-  _inGameMusic: {fileID: 0}
-  _musicSource: {fileID: 2451680641212574410}
+  _inGameMusic: {fileID: 8300000, guid: 41705dc939c1b0e43adb9c1eedfe53f9, type: 3}
+  _musicSource: {fileID: 8066707242684609244}
   _volume: 1
   _updateVolume: 0
 --- !u!1 &6274447575145371743
