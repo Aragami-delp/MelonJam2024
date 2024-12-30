@@ -54,6 +54,8 @@ public class Cannon : MonoBehaviour
         Instance = null;
     }
 
+    private bool _isHoldingScrap => _holdingScrap.Count > 0;
+
     /// <summary>
     /// -1 == Pickup; 
     /// </summary>
