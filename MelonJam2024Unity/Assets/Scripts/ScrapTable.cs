@@ -20,14 +20,23 @@ public class ScrapTable : MonoBehaviour
     [SerializeField] private SwitchSprite _generatorSprite;
     [SerializeField] private Bullet _toGenerateScrap;
     [ReadOnly, SerializeField] private float _timeToGenerate = 20f;
-    [ReadOnly, SerializeField] private int m_amountToGenerate = 0;
+    [ReadOnly, SerializeField] private int _amountToGenerate = 0;
     public float m_timeToGenerate
     {
         get { return _timeToGenerate; }
         set
         {
-            _generatorSprite?.Switch(value > 0);
             _timeToGenerate = Mathf.Clamp(value, .5f, 120f);
+        }
+    }
+
+    public int m_amountToGenerate
+    {
+        get { return _amountToGenerate; }
+        set
+        {
+            _amountToGenerate = Mathf.Max(value, 0);
+            _generatorSprite?.Switch(_amountToGenerate > 0);
         }
     }
 

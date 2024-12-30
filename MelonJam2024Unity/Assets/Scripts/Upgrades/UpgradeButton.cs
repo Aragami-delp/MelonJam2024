@@ -86,6 +86,7 @@ public class UpgradeButton : MonoBehaviour
 
     public void BuyUpgrade() 
     {
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.CLICK);
         if (upgrade.Level < upgrade.MaxLevel) 
         { 
             OnUpgradeBought(true);

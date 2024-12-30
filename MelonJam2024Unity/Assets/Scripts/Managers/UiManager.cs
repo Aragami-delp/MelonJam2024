@@ -78,6 +78,9 @@ public class UiManager : MonoBehaviour
 
     public void ForwardTutorial(InputAction.CallbackContext context) 
     {
+        if (!lastTutorialBoy)
+            return;
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.CLICK);
         tutorialTextProgress++;
         Destroy(lastTutorialBoy);
         switch (tutorialTextProgress) 

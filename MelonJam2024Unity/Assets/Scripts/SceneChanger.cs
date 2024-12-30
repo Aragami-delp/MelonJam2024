@@ -36,6 +36,7 @@ public class UpgradeUiManager : MonoBehaviour
 
     public void StartGame() 
     {
+        MusicSoundManagement.Instance.PlaySfx(MusicSoundManagement.AUDIOTYPE.CLICK);
         SceneManager.LoadScene("GameScene");
     }
 }
